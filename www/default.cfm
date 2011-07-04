@@ -4,32 +4,16 @@
 <!--[if lte IE 8]><meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /><![endif]-->
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <title>The Local Network</title>
-<script type="text/javascript" src="//cdn.the-ln.com/Karma/js/jquery-1.4.2.min.js"></script>
-<script type="text/javascript" src="//cdn.the-ln.com/Karma/js/karma.js"></script>
 <link href="//cdn.the-ln.com/Karma/style.css" rel="stylesheet" type="text/css" />
 <link href="//cdn.the-ln.com/Karma/css/karma-royal-blue.css" rel="stylesheet" type="text/css" />
 <link rel="shortcut icon" href="#"/>
 <!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/lt8.css" media="screen"/><![endif]-->
 
-
-<!-- ***************** - START 3D CONFIG - ***************** -->
-<script type="text/javascript" src="//cdn.the-ln.com/Karma/js/swfobject.js"></script>
-<script type="text/javascript" src="//cdn.the-ln.com/Karma/js/CU3ER.js"></script>
-<script type="text/javascript">
-
-// Location of XML file
-var vars = { xml_location : 'swf/gallerySettings.xml' };
-
-
-<!-- ***** please do not edit below this line ***** -->
-
-var params = { wmode: 'transparent' };
-var attributes = { id:'CU3ER', name:'CU3ER' };
-swfobject.embedSWF('//cdn.the-ln.com/Karma/swf/CU3ER.swf', "CU3ER", 940, 400, "10.0.0", "//cdn.the-ln.com/Karma/swf/expressinstall.swf", vars, params, attributes );
-var CU3ER_object = new CU3ER("CU3ER");
-</script>
-<!-- ***************** - END 3D CONFIG - ***************** -->
-
+<link href='http://fonts.googleapis.com/css?family=Indie+Flower&subset=latin&v2' rel='stylesheet' type='text/css'>
+<style>
+	#menu-main-nav li strong {font-family: "Indie Flower"; font-size: 24pt; text-transform: none;}
+	.logo { position:relative; top: -18px;}
+</style>
 
 
 </head>
@@ -55,7 +39,7 @@ var CU3ER_object = new CU3ER("CU3ER");
 <!-- ***************** - Top Toolbar Right Side - ***************** -->
 <div class="sub-nav2">
     <ul>
-    <li><a href="//blog.the-local-network.com">./blog</a></li>
+    <li><a href="//blog.the-local-network.com">The Local Network Blog</a></li>
     <li><a href="http://www.twitter.com/TheLocalNetwork">@TheLocalNetwork</a></li>
     </ul>
 </div><!-- end sub-nav2 -->
@@ -75,7 +59,7 @@ var CU3ER_object = new CU3ER("CU3ER");
 
 
 <!-- ***************** - LOGO - ***************** -->
-<a href="./" class="logo" style="padding-left: 12px; position:relative; top: -18px;"><img src="./img/logo.sm.png" alt="Karma Website Template" /></a>
+<a href="./" class="logo"><img src="./img/logo.sm.png" alt="Karma Website Template" /></a>
 <!-- ***************** - END LOGO - ***************** -->
 
 
@@ -84,7 +68,7 @@ var CU3ER_object = new CU3ER("CU3ER");
 <!-- ***************** - Main Navigation - ***************** -->
 <ul id="menu-main-nav">
 
-<li class="current_page_item"><a href="network.cfm"><span><strong>Our Sites</strong><span class="navi-description">the local network</span></span></a>
+<li class="current_page_item"><a href="network.cfm"><span><strong>Sites</strong><span class="navi-description">the local network</span></span></a>
 <ul class="sub-menu">
     <li><a href="http://local-nursing-homes.com">Local Nursing Homes</a></li>
     <li><a href="http://local-businesses-for-sale.com">Local Businesses For Sale</a></li>
@@ -95,16 +79,18 @@ var CU3ER_object = new CU3ER("CU3ER");
 </li>
 
 
-<li><a href="news.cfm"><span><strong>Network News</strong><span class="navi-description">follow our feeds</span></span></a>
+<li><a href="news.cfm"><span><strong>News</strong><span class="navi-description">follow our feeds</span></span></a>
 <ul class="sub-menu">
     <li><a href="http://www.twitter.com/TheLocalNetwork">@TheLocalNetwork</a></li>
     <li><a href="http://www.twitter.com/NursingHomeNews">@NursingHomeNews</a></li>
     <li><a href="http://www.twitter.com/Businesses2Sell">@Businesses2Sell</a></li>
+    <li><a href="http://www.twitter.com/RehabCenterNews">@RehabCenterNews</a></li>
 </ul>
 </li>
 
-<li><a href="about.cfm"><span><strong>About Us</strong><span class="navi-description">who we are</span></span></a></li>
-<li><a href="http://blog.the-local-network.com"><span><strong>Company Blog</strong><span class="navi-description">articles &amp; ideas</span></span></a></li></ul>
+<li><a href="about.cfm"><span><strong>About</strong><span class="navi-description">who we are</span></span></a></li>
+<!---<li><a href="http://blog.the-local-network.com"><span><strong>Blog</strong><span class="navi-description">articles &amp; ideas</span></span></a></li>--->
+</ul>
 <!-- ***************** - END Main Navigation - ***************** -->
 
 
@@ -112,23 +98,70 @@ var CU3ER_object = new CU3ER("CU3ER");
 
 
 
-<!-- ***************** - Homepage 3D Slider - ***************** -->
+<!-- ***************** - Homepage jQuery Slider - ***************** -->
+<div class="home-banner-wrap">
+<ul>
+<li class="jqslider">
+ <div class="home-banner-main">
+ <h2>Premium Website Template</h2>
+ <p>Karma is an amazingly powerful Website Template. Karma comes with over 20 page templates and 20 professionally designed color variations. Combine that with the over 70 built in styled elements, easy multi columns and a super cool PHP+AJAX contact form, and this will be the only template you'll need to purchase for a long time to come.</p>
+ </div><!-- end home-banner-main -->
 
-<div class="home-flash-slider">
-<div class="flash-wrap">
-    <div id="CU3ER">
-    
-    
-    <!-- modify this content to provide users without Flash or enabled Javascript with alternative content information -->
-    <p>Click to get Flash Player<br /><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" /></a></p>
-    <p>or try to enable JavaScript and reload the page</p>
-    
-    
-    </div><!-- end CU3ER -->
-</div><!-- end flash-wrap -->
-</div><!-- end home-flash-slider -->
+ <div class="home-banner-sub">
+ <div class="home-banner-sub-content">
+ <a href="#"><img src="http://files.truethemes.net/themes/karma-html/premium-website-template-6.png" alt="Premium Website Template" width="436" height="270" /></a>
+ </div><!-- end home-banner-sub-content -->
+ </div><!-- end home-banner-sub -->
+</li>
 
-<!-- ***************** - END Homepage 3D Slider - ***************** -->
+
+
+
+<li class="jqslider">
+ <div class="home-banner-main">
+ <h2>20 Gorgeous Color Variations</h2>
+ <p>Karma was designed and built by professional web designers. It comes packed with 20 gorgeous color variations. You can also easily mix and match color schemes for a completely custom look.</p>
+ </div><!-- end home-banner-main -->
+
+ <div class="home-banner-sub">
+ <div class="home-banner-sub-content">
+ <a href="#"><img src="http://files.truethemes.net/themes/karma-html/premium-website-template-7.png" alt="HTML Website Template" width="436" height="270" /></a>
+ </div><!-- end home-banner-sub-content -->
+ </div><!-- end home-banner-sub -->
+</li>
+
+
+
+
+<li class="jqslider">
+ <div class="home-banner-main">
+ <h2>20 Gorgeous Color Variations</h2>
+ <p>Karma was designed and built by professional web designers. It comes packed with 20 gorgeous color variations. You can also easily mix and match color schemes for a completely custom look.</p>
+ </div><!-- end home-banner-main -->
+
+ <div class="home-banner-sub">
+ <div class="home-banner-sub-content">
+ <a href="#"><img src="http://files.truethemes.net/themes/karma-html/premium-website-template-7.png" alt="HTML Website Template" width="436" height="270" /></a>
+ </div><!-- end home-banner-sub-content -->
+ </div><!-- end home-banner-sub -->
+</li>
+
+
+
+ 
+ 
+<li class="jqslider">
+<div class="home-banner-sub-full">
+<div class="home-banner-sub-content-full">
+<img src="http://files.truethemes.net/themes/karma-html/premium-website-template-8.png" alt="CSS Template" width="840" height="270" />
+</div><!-- end home-banner-sub-content-full -->
+</div><!-- end home-banner-sub-full -->
+</li>
+
+
+</ul></div><!-- end home-banner-wrap -->
+
+<!-- ***************** - END Homepage jQuery Slider - ***************** -->
 
 
 
@@ -344,6 +377,8 @@ var CU3ER_object = new CU3ER("CU3ER");
 
 </div><!-- end main -->
 </div><!-- end wrapper -->
+<script type="text/javascript" src="//cdn.the-ln.com/Karma/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="//cdn.the-ln.com/Karma/js/karma.js"></script>
 <script type="text/javascript" src="//cdn.the-ln.com/Karma/js/jquery.cycle.all.min.js"></script>
 <script type="text/javascript" src="//cdn.the-ln.com/Karma/js/jquery-2-slider.js"></script>
 <script type="text/javascript" src="//cdn.the-ln.com/Karma/js/testimonial-slider.js"></script>
