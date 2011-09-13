@@ -55,7 +55,7 @@
                         <div class="element-wrapper captcha-element-wrapper clearfix">
                             <label for="type_the_word">Type the word <span class="required">(required)</span></label>
                             <div class="input-wrapper captcha-input-wrapper clearfix">
-                                <div class="captcha-img"><img src="//cdn.the-ln.com/Karma/contact-form/images/captcha.png" alt="" /></div>
+                                <div class="captcha-img"><img src="/theme/Karma/contact-form/images/captcha.png" alt="" /></div>
                                 <input id="type_the_word" class="captcha-element" type="text" name="type_the_word" />
                             </div>
                         </div>
@@ -244,8 +244,8 @@
 
 </div><!-- end main -->
 </div><!-- end wrapper -->
-<script type="text/javascript" src="//cdn.the-ln.com/Karma/js/jquery.cycle.all.min.js"></script>
-<script type="text/javascript" src="//cdn.the-ln.com/Karma/js/jquery-1-slider.js"></script>
-<script type="text/javascript" src="//cdn.the-ln.com/Karma/js/testimonial-slider.js"></script>
+<script type="text/javascript" src="/theme/Karma/js/jquery.cycle.all.min.js"></script>
+<script type="text/javascript" src="/theme/Karma/js/jquery-1-slider.js"></script>
+<script type="text/javascript" src="/theme/Karma/js/testimonial-slider.js"></script>
 </body>
 </html>

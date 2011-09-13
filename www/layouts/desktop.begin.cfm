@@ -23,11 +23,11 @@
 	<meta name="Description" content="#trim(attributes.metaDescription)#" />
 	<meta name="canonical" content="#attributes.canonical#" />
 	
-	<link href="//cdn.the-ln.com/Karma/style.css" rel="stylesheet" type="text/css" />
+	<link href="/theme/Karma/style.css" rel="stylesheet" type="text/css" />
 	<!--[if lte IE 8]><link rel="stylesheet" type="text/css" href="css/lt8.css" media="screen"/><![endif]-->
-	<link href="//cdn.the-ln.com/Karma/contact-form/css/standard.css" rel="stylesheet" type="text/css" />
+	<link href="/theme/Karma/contact-form/css/standard.css" rel="stylesheet" type="text/css" />
 	
-	<link href="//cdn.the-ln.com/Karma/css/karma-royal-blue.css" rel="stylesheet" type="text/css" />
+	<link href="/theme/Karma/css/karma-royal-blue.css" rel="stylesheet" type="text/css" />
 	<link rel="shortcut icon" href="./img/marker2-square.png"/>
 	<link href='http://fonts.googleapis.com/css?family=Indie+Flower&subset=latin&v2' rel='stylesheet' type='text/css'>
 	<style>

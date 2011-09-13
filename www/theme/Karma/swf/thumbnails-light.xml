@@ -1,0 +1,298 @@
+﻿<data>
+  <debug>0</debug><template><name><![CDATA[]]></name><key><![CDATA[335bb2b7d242109a]]></key></template>
+  
+<!-- uncomment the code below and insert license if you've purchased PRO License -->
+<!-- <licence><![CDATA[insert license here]]></licence> -->
+  
+  <project_settings>
+    <width>940</width>
+    <height>400</height>
+  </project_settings>
+  
+  
+  
+  
+  <settings>
+    <folder_images>3dimages</folder_images>
+    <folder_fonts>3dfonts</folder_fonts>
+    <background>
+      <color transparent="true">0xf4f4f2</color>
+    </background>
+    <start_slide>1</start_slide>
+    <auto_play>true</auto_play>
+    <randomize_slides>false</randomize_slides>
+    <branding align_to="stage" align_pos="TR" x="-10" y="10">
+      <remove_logo_loader>false</remove_logo_loader>
+      <remove_right_menu_info>false</remove_right_menu_info>
+      <remove_right_menu_licence>false</remove_right_menu_licence>
+    </branding>
+    <camera x="0" y="0" z="0" angleX="0" angleY="0" angleZ="0"/>
+    <shadow show="true" use_image="false" color="0x000000" alpha="1" blur="30" corner_TL="0,260" corner_TR="539,260" corner_BR="622,432" corner_BL="-50,430"/>
+  </settings>
+  
+  
+  
+  
+  
+  
+  
+  <fonts/>
+  <preloader type="circular" align_pos="MC" width="200" height="20" x="0" y="0" radius="30">
+    <background padding="5">
+      <tweenShow tint="0x000000" alpha="0.85" x="0" y="0" scaleX="1" scaleY="1"/>
+      <tweenOver alpha="1" x="0" y="0" scaleX="1" scaleY="1"/>
+      <tweenHide alpha="0" x="0" y="0" scaleX="1" scaleY="1"/>
+    </background>
+    <loader>
+      <tweenShow tint="0xffffff" alpha="0.8"/>
+      <tweenOver tint="0xFFFFFF" alpha="1"/>
+      <tweenHide tint="0xFFFFFF" alpha="0"/>
+    </loader>
+    <hide_on_transition>true</hide_on_transition>
+    <auto_hide time="3">true</auto_hide>
+  </preloader>
+  
+  
+  
+  
+  
+  
+  
+  
+  <controls>
+    <auto_play_indicator type="circular" align_to="stage" align_pos="TC" x="-193" y="158" width="300" height="10" padding="2" radius="22">
+      <auto_hide time="3">false</auto_hide>
+      <hide_on_transition>true</hide_on_transition>
+      <background padding="5">
+        <tweenShow tint="0xffffff" alpha="0.65" x="0" y="0" scaleX="1" scaleY="1"/>
+        <tweenOver tint="0xffffff" alpha="0.95" x="0" y="0" scaleX="1" scaleY="1"/>
+        <tweenHide tint="0x000000" alpha="0" x="0" y="0" scaleX="1" scaleY="1"/>
+        <tweenSelected tint="0x000000" alpha="0.65"/>
+      </background>
+      <loader>
+        <tweenShow tint="0x000000" alpha="1"/>
+        <tweenOver alpha="1"/>
+        <tweenHide alpha="0"/>
+      </loader>
+    </auto_play_indicator>
+    <prev_button align_pos="ML" width="40" height="50" x="0" y="0">
+      <auto_hide time="3">false</auto_hide>
+      <hide_on_transition>true</hide_on_transition>
+      <background round_corners="0,25,25,0">
+        <tweenShow tint="0xffffff" alpha="0.65" x="0" y="0"/>
+        <tweenOver tint="0xffffff" alpha="0.95"/>
+        <tweenHide tint="0x000000" alpha="0"/>
+      </background>
+      <symbol type="1" align_pos="MC" x="-3" y="-0.025000000000005684">
+        <tweenShow alpha="1" scaleX="0.9" scaleY="0.9" tint="0x666666" x="0" y="0"/>
+        <tweenOver tint="0x333333" scaleX="0.9" scaleY="0.9" alpha="1" x="-0.025000000000005684" y="0"/>
+        <tweenHide tint="0xFFFFFF" scaleX="0.85" scaleY="0.85" alpha="0" x="3" y="0.025000000000005684"/>
+        <tweenSelected x="0" y="0"/>
+      </symbol>
+    </prev_button>
+    <next_button align_pos="MR" width="40" height="50" x="0" y="0">
+      <auto_hide time="3">false</auto_hide>
+      <hide_on_transition>true</hide_on_transition>
+      <background round_corners="25,0,0,25">
+        <tweenShow tint="0xffffff" alpha="0.65" x="0" y="0"/>
+        <tweenOver tint="0xffffff" alpha="0.95"/>
+        <tweenHide tint="0x000000" alpha="0"/>
+      </background>
+      <symbol type="1" align_pos="MC" x="2" y="-0.024999999999977263">
+        <tweenShow alpha="1" scaleX="0.9" scaleY="0.9" tint="0x666666" x="0" y="0"/>
+        <tweenOver tint="0x333333" scaleX="0.9" scaleY="0.9" alpha="1" x="-0.024999999999977263" y="0"/>
+        <tweenHide tint="0xFFFFFF" scaleX="0.85" scaleY="0.85" alpha="0" x="-3" y="0.024999999999977263"/>
+      </symbol>
+    </next_button>
+  </controls>
+  
+  
+  
+  
+  
+  
+  
+  
+  <description align_pos="BL" x="0" y="0" width="555" height="60">
+    <auto_hide time="3">true</auto_hide>
+    <hide_on_transition>true</hide_on_transition>
+    <bake_on_transition>false</bake_on_transition>
+    <background round_corners="0,0,0,0">
+      <tweenShow tint="0xffffff" alpha="0.75" x="0" y="0" scaleX="1" scaleY="1"/>
+      <tweenOver tint="0xffffff" alpha="0.85" x="0" y="0" scaleX="0.999999970274278" scaleY="1"/>
+      <tweenHide tint="0xffffff" alpha="0" x="0" y="0" scaleX="0.999999970274278" scaleY="1"/>
+    </background>
+    <heading margin="5,5,5,5" text_size="18" x="5" y="5" width="90" text_leading="0" text_letterSpacing="0" font="Verdana" text_align="left">
+      <tweenShow tint="0x000000" alpha="1"/>
+      <tweenOver tint="0x000000" alpha="1"/>
+      <tweenHide tint="0x000000" alpha="1"/>
+    </heading>
+    <paragraph margin="0,5,5,5" text_size="12" text_leading="0" font="Tahoma" text_align="left" text_letterSpacing="0">
+      <tweenShow tint="0x000000" alpha="1"/>
+      <tweenOver tint="0x000000" alpha="1"/>
+      <tweenHide tint="0x000000" alpha="1"/>
+    </paragraph>
+  </description>
+  
+  
+  
+  
+  
+  
+  
+  
+  <thumbnails align_to="stage" align_pos="TR" x="0" y="0" width="383" height="358" scroll="vertical" padding_x="0" padding_y="0">
+    <auto_hide time="3">false</auto_hide>
+    <hide_on_transition>false</hide_on_transition>
+    <background color="0x333333" alpha="0" round_corners="0,0,0,0"/>
+    <thumb width="75" height="60" spacing_x="15" spacing_y="15">
+      <background round_corners="0,0,0,0">
+        <tweenShow tint="0xffffff" alpha="1"/>
+        <tweenOver tint="0xd8d9d7" alpha="1"/>
+        <tweenHide tint="0xFFFFFF" alpha="0"/>
+        <tweenSelected tint="0x919190" alpha="1"/>
+      </background>
+      <image x="4" y="4" width="67" height="52" round_corners="0,0,0,0">
+        <tweenShow alpha="1" x="0" y="0"/>
+        <tweenOver alpha="1"/>
+        <tweenHide alpha="0.85"/>
+        <tweenSelected alpha="1" scaleX="1" scaleY="1"/>
+      </image>
+    </thumb>
+  </thumbnails>
+  
+  
+  
+  
+  
+  
+  
+  
+  <defaults>
+    <slide time="5" color="0x000000">
+      <image align_pos="MC" x="0" y="0" scaleX="1" scaleY="1"/>
+      <link target="_blank"/>
+      <description>
+        <link target="_blank"/>
+      </description>
+    </slide>
+    <transition type="3D" columns="3" rows="3" type2D="slide" flipAngle="180" flipOrder="45" flipShader="none" flipOrderFromCenter="false" flipDirection="left" flipColor="0x878787" flipBoxDepth="10" flipDepth="250" flipEasing="Sine.easeOut" flipDuration=".5" flipDelay=".10"/>
+  </defaults>
+  
+  
+  
+  
+  
+  
+  
+  
+  <slides width="555" height="359.95" align_pos="TL" x="0" y="0" align_to="stage" corner_TL="0,0.025" corner_TR="555,0.025" corner_BL="0,359.975" corner_BR="555,359.975">
+  
+  
+  
+  
+    <!-- These are the slides below. Feel free to add/remove new slides and define new images -->
+    <slide>
+      <url><![CDATA[premium-wordpress-newthumb-1.jpg]]></url>
+      <link target="_self"/>
+      <description>
+        <heading/>
+        <paragraph/>
+      </description>
+    </slide>
+	
+	
+	
+	
+	
+	
+    <transition rows="4" columns="4" flipOrder="315" flipDirection="right"/>
+    <slide>
+      <url><![CDATA[premium-wordpress-newthumb-2.jpg]]></url>
+      <link target="_self"/>
+      <description/>
+    </slide>
+	
+	
+	
+	
+	
+	
+    <transition rows="5" columns="1" flipOrder="270" flipDirection="down"/>
+    <slide>
+      <url><![CDATA[premium-wordpress-newthumb-3.jpg]]></url>
+      <link target="_self"/>
+      <description>
+        <heading><![CDATA[Easily Add a Caption]]></heading>
+        <paragraph><![CDATA[Lorem Ipsum Dolor Sit Amet.]]></paragraph>
+      </description>
+    </slide>
+	
+	
+	
+	
+	
+	
+    <transition flipOrder="0" flipDirection="right" rows="1" columns="6"/>
+    <slide>
+      <url><![CDATA[premium-wordpress-newthumb-4.jpg]]></url>
+      <link target="_self"/>
+      <description/>
+    </slide>
+	
+	
+	
+	
+	
+	
+    <transition rows="5" columns="5" flipOrder="225" flipDirection="up,left,right,down"/>
+    <slide>
+      <url><![CDATA[premium-wordpress-newthumb-4.jpg]]></url>
+      <link target="_self"/>
+      <description/>
+    </slide>
+	
+	
+	
+	
+	
+	
+    <transition rows="1" columns="1" flipOrder="270" flipDirection="down" flipBoxDepth="250" flipDepth="400"/>
+    <slide>
+      <url><![CDATA[premium-wordpress-newthumb-3.jpg]]></url>
+      <link target="_self"/>
+      <description/>
+    </slide>
+	
+	
+	
+	
+	
+	
+    <transition rows="3" columns="1" flipBoxDepth="100" flipDepth="400"/>
+    <slide>
+      <url><![CDATA[premium-wordpress-newthumb-2.jpg]]></url>
+      <link target="_self"/>
+      <description/>
+    </slide>
+	
+	
+	
+	
+	
+	
+    <transition rows="4" columns="4" flipOrder="225" flipDirection="up,left,right,down"/>
+    <slide>
+      <url><![CDATA[premium-wordpress-newthumb-1.jpg]]></url>
+      <link target="_self"/>
+      <description/>
+    </slide>
+	
+	
+	
+	
+	
+	
+    <transition flipOrder="45" flipOrderFromCenter="true" rows="5" columns="5" flipDirection="up,left,right,down"/>
+  </slides>
+</data>
