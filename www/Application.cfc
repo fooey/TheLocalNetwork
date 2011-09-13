@@ -49,6 +49,8 @@
 				resetHandler();
 			}
 			
+			REQUEST.remoteAddr = application.cfc.net.getRemoteAddr();
+			
 			redirectsHandler();
 			devModeHandler();
 		}
@@ -78,6 +80,7 @@
 		
 		
 		private void function initComponents(){
+			application.cfc.net = new lib.cfc.net();
 		}
 		
 		
@@ -125,7 +128,7 @@
 		
 		
 		private void function devModeHandler(){
-			if(CGI.REMOTE_ADDR EQ "127.0.0.1"){
+			if(REQUEST.remoteAddr EQ "127.0.0.1"){
 				initComponents();
 				application.isDev = true;
 			}
