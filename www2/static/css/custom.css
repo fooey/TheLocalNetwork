@@ -1,0 +1,70 @@
+
+
+/*!
+ * 
+ * template
+ *
+ */
+
+.shadowed {
+	-webkit-box-shadow: 0 1px 3px rgba(0,0,0,.25);
+	-moz-box-shadow: 0 1px 3px rgba(0,0,0,.25);
+	box-shadow: 0 1px 3px rgba(0,0,0,.25);
+}
+
+
+
+/*
+ * page level overrides/tweaks
+ */
+
+
+html{
+	-webkit-font-smoothing: subpixel-antialiased;
+	font-smooth:always;
+}
+
+
+body {
+	padding-top: 60px;
+	background: #0064cd url(/static/img/bg.vertical.png) center top repeat-y;
+	font-size: 10pt;
+}
+
+.hero-unit{
+	border: 1px solid white;
+}
+
+
+
+
+/*
+ * topbar overrides/tweaks
+ */
+
+
+.topbar a,
+.topbar div > ul .dropdown-menu li a {
+	color: #fefefe;
+}
+
+.topbar .brand {
+	padding: 0;
+}
+.topbar .brand a{
+	background:url(/static/img/logo-hor-small-sprite.png) no-repeat left top;
+	width: 320px;
+	height: 40px;
+	padding: 0;
+	margin: 0;
+}
+.topbar .brand a:hover{
+	background-position: left bottom;
+}
+.topbar .brand span{
+	text-indent: -999px;
+	display: block;
+}
+
+
+#sites{min-height: 1000px; padding-top: 60px; position: relative; top: -60px}
