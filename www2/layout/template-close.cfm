@@ -1,10 +1,17 @@
 
 	
-	
+	<cfoutput>
 	<footer>
 		<hr>
-		<p>&copy; The Local Network <cfoutput>#year(now())#</cfoutput></p>
+
+		<div>
+			<a href="http://the-local-network.com/legal/TermsAndConditions.cfm">Terms and Conditions of Use</a>
+			| <a href="http://the-local-network.com/legal/PrivacyPolicy.cfm">Privacy Policy</a>
+			| <a href="http://the-local-network.com/legal/ContentGuidelines.cfm">Content Policies and Guidelines</a>
+		</div>
+		<div>&copy;2011<cfif Year(Now()) NEQ "2011">-#Year(now())#</cfif> <a href="http://the-local-network.com/">The Local Network, LLC</a></div>
 	</footer>
+	</cfoutput>
 	
 </div>
 
