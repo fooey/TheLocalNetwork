@@ -11,12 +11,23 @@
 	<!---<p><a class="btn primary large" href="#sites">Check out our sites &raquo;</a></p>--->
 </div>
 	
-	
+<!--- 
+<form action="http://the-local-network.com/search.cfm" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-2680194687384513:2796089650" />
+    <input type="hidden" name="cof" value="FORID:10" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="text" name="q" size="55" />
+    <input type="submit" name="sa" value="Search" />
+  </div>
+</form>
+<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&amp;lang=en"></script>
+ --->
 	
 <form class="well" action="/search.cfm" id="cse-search-box">
-	<input type="hidden" name="cx" value="partner-pub-2680194687384513:2348099383" />
-	<input type="hidden" name="cof" value="FORID:10" />
-	<input type="hidden" name="ie" value="UTF-8" />
+    <input type="hidden" name="cx" value="partner-pub-2680194687384513:2796089650" />
+    <input type="hidden" name="cof" value="FORID:10" />
+    <input type="hidden" name="ie" value="UTF-8" />
 	
 	<div style="text-align: center;">
 		<input class="span6" type="text" name="q" id="q">
