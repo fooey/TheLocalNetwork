@@ -27,7 +27,7 @@
 				<li>Do not post content that is abusive, defamatory, hateful, offensive, threatening, vulgar, or sexually explicit</li>
 				<li>Do not impersonate another person or misrepresent your association with another person or entity</li>
 				<li>Do not post bogus reviews intended to either increase or decrease rankings</li>
-				<li>Do not post phone numbers, addresses, or URLs external to The Local Network.com</li>
+				<li>Do not post phone numbers, addresses, or URLs external to The-Local-Network.com</li>
 			</ul>
 			<p>The Local Network reserves the right (but not the obligation) to remove at its discretion any review, ranking, or other content that is inconsistent with the foregoing policies and guidelines.</p>
 			<p>If you have a question or would like to tell us about a specific problem with a review, ranking or other content, please <a href="/contact.cfm">contact us</a>.</p>

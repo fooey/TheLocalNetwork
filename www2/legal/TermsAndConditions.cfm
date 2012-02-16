@@ -22,7 +22,7 @@
 			
 			<h3 id="definitions">DEFINITIONS</h3>
 			<p>
-				&#8220;The Local Network.com&#8221; (as used in these Terms, in the <a href="/legal/PrivacyPolicy.cfm">Privacy Policy</a>, and in the <a href="/legal/ContentGuidelines.cfm">Content Policies and Guidelines</a>) 
+				&#8220;The-Local-Network.com&#8221; (as used in these Terms, in the <a href="/legal/PrivacyPolicy.cfm">Privacy Policy</a>, and in the <a href="/legal/ContentGuidelines.cfm">Content Policies and Guidelines</a>) 
 					means the features and services The Local Network makes available through 
 					(a) its websites at 
 						<a href="http://the-local-network.com" target="_blank">the-local-network.com</a>, 
@@ -53,7 +53,7 @@
 			
 			<h3 id="copyright">COPYRIGHT</h3>
 			<p>
-				All content on The Local Network.com is the property of The Local Network or its content suppliers and is protected by U.S. and international copyright laws.
+				All content on The-Local-Network.com is the property of The Local Network or its content suppliers and is protected by U.S. and international copyright laws.
 			</p>
 			
 			
@@ -61,7 +61,7 @@
 			<p>
 				The Local Network grants you a limited license to access and make personal use of The-Local-Network.com and not to download (other than page caching) or modify it, 
 					or any portion of it, except with the express written consent of The Local Network. 
-				This license does not include any resale or commercial use of The Local Network.com or its contents; 
+				This license does not include any resale or commercial use of The-Local-Network.com or its contents; 
 					any collection and use of any product or business listings, descriptions, or prices; 
 					or any derivative use of The-Local-Network.com or its contents. 
 				The-Local-Network.com or any portion of it may not be reproduced, duplicated, copied, sold, resold, visited, 
@@ -158,7 +158,7 @@
 			
 			<h3 id="disputes">DISPUTES</h3>
 			<p>
-				Any dispute or claim relating in any way to your visit to The Local Network.com will be resolved by binding arbitration in the state of Utah, 
+				Any dispute or claim relating in any way to your visit to The-Local-Network.com will be resolved by binding arbitration in the state of Utah, 
 					rather than in court, except that you may assert claims in small claims court in the state of Utah if your claims qualify. 
 				The Utah Uniform Arbitration Act and Utah arbitration law apply to this agreement.
 			</p>
@@ -185,7 +185,7 @@
 			
 			<h3 id="applicableLaw">APPLICABLE LAW</h3>
 			<p>
-				By visiting The Local Network.com, 
+				By visiting The-Local-Network.com, 
 					you agree that the Utah Uniform Arbitration Act, 
 					together with all other laws of the state of Utah, 
 					without regard to principles of conflict of laws, 
@@ -196,7 +196,7 @@
 			<h3 id="sitePolicies">SITE POLICIES, MODIFICATION, AND SEVERABILITY</h3>
 			<p>
 				Please review our other policies, such as our <a href="/legal/PrivacyPolicy.cfm">Privacy Policy</a> and <a href="/legal/ContentGuidelines.cfm">Content Policies and Guidelines</a> posted on this site. 
-				These policies govern your visit to and use of The Local Network.com and each is expressly incorporated herein by reference. 
+				These policies govern your visit to and use of The-Local-Network.com and each is expressly incorporated herein by reference. 
 				We reserve the right to make changes to our site, policies, and these Terms at any time. 
 				If any part, portion, or provision of these Terms is deemed invalid, void, or for any reason unenforceable, 
 					such part, portion, or provision shall be deemed severable and shall not affect the validity and enforceability of any remaining provisions of these Terms.
@@ -209,7 +209,7 @@
 				Attn: Jason W. Rushton
 				2847 East 1290 South
 				St. George, UT 84790
-				http://the local network.com
+				http://the-local-network.com
 			</address>
 			
 			

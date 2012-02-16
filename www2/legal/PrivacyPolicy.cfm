@@ -14,7 +14,7 @@
 				<h4>Last Updated <cfoutput>#dateFormat(getFileInfo(getCurrentTemplatePath()).lastModified, "long")#</cfoutput></h4>
 			</hgroup>
 			
-			<p><strong>By visiting or using The Local Network.com, you are accepting the practices described in this Privacy Policy.</strong></p>
+			<p><strong>By visiting or using The-Local-Network.com, you are accepting the practices described in this Privacy Policy.</strong></p>
 			<p>
 				The Local Network LLC (&#8220;The Local Network&#8221;) gathers information from users and visitors of The-Local-Network.com to help us personalize and improve your experience at The-Local-Network.com.
 				We receive and store the information that you post or submit on or to The-Local-Network.com, as well as certain types of information generated whenever you interact with The-Local-Network.com.
@@ -47,13 +47,13 @@
 				advertisers (including ad-serving companies) may assume that users who interact with or click on a personalized advertisement meet their criteria to personalize the advertisement.
 			</p>
 			<p><strong>
-				If you choose to visit or use The Local Network.com,
+				If you choose to visit or use The-Local-Network.com,
 					your visit and use, together with any dispute over privacy related thereto,
 					is subject to this <a href="/legal/PrivacyPolicy.cfm">Privacy Policy</a> and our <a href="/legal/TermsAndConditions.cfm">Terms and Conditions of Use</a>,
 					including limitations on damages, resolution of disputes, and application of the law of the state of Utah.
 			</strong></p>
 			<p>
-				If you have any concern about privacy at The Local Network.com, please contact us with a thorough description, and we will try to resolve it.
+				If you have any concern about privacy at The-Local-Network.com, please contact us with a thorough description, and we will try to resolve it.
 				Our business changes constantly, and our <a href="/legal/PrivacyPolicy.cfm">Privacy Policy</a> and the <a href="/legal/TermsAndConditions.cfm">Terms and Conditions of Use</a> will change also.
 				<strong>Unless stated otherwise, our current Privacy Policy applies to all information that we have about you.</strong>
 			</p>
