@@ -241,7 +241,7 @@
 					Notices of claims of copyright infringement can be sent to the following address:
 				</p>
 				
-				<cfset emailEncoded = entityEscape('copyright@the-local-network.com') />
+				<cfset emailEncoded = entityEscape('jrushton@the-ln.com') />
 				<address>
 					The Local Network LLC
 					Attn: Jason W. Rushton
