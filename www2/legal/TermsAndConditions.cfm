@@ -225,26 +225,31 @@
 			<div class="notice">
 				<h3 id="copyrightInfringement">NOTICE AND PROCEDURE FOR<br>MAKING CLAIMS OF COPYRIGHT INFRINGEMENT</h3>
 				<p>
-					If you believe that your work has been copied in a way that constitutes copyright infringement, 
-						please provide The Local Network with the written information specified below. 
+					If you believe that your work has been copied in a way that constitutes copyright infringement,
+						please provide the written information specified below to The Local Network&#8217;s designated copyright agent.
 					Please note that this procedure is exclusively for notifying The Local Network that your copyrighted material has been infringed.
 				</p>
 				<ul>
-					<li>An electronic or physical signature of the person authorized to act on behalf of the owner of the copyright interest;</li>
+					<li>An electronic or physical signature of a person authorized to act on behalf of the owner of an exclusive right that is allegedly infringed;</li>
 					<li>A description of the copyrighted work that you claim has been infringed upon;</li>
 					<li>A description of where the material that you claim is infringing is located on the site;</li>
 					<li>Your address, telephone number, and e-mail address;</li>
-					<li>A statement by you that you have a good-faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law;</li>
+					<li>A statement by you that you have a good faith belief that the disputed use is not authorized by the copyright owner, its agent, or the law;</li>
 					<li>A statement by you, made under penalty of perjury, that the above information in your notice is accurate and that you are the copyright owner or authorized to act on the copyright owner&#8217;s behalf.</li> 
 				</ul>
 				<p>
 					Notices of claims of copyright infringement can be sent to the following address:
 				</p>
+				
+				<cfset emailEncoded = entityEscape('copyright@the-local-network.com') />
 				<address>
 					The Local Network LLC
 					Attn: Jason W. Rushton
 					2847 East 1290 South
 					St. George, UT 84790
+					Telephone: 435-674-0525
+					Email: <cfoutput><a href="mailto:#emailEncoded#">#emailEncoded#</a></cfoutput>
+					
 				</address>
 			</div>
 			
@@ -253,10 +258,19 @@
 	</div>
 </div>
 	
-	
-	
-	
 
 <cfscript>
+	function entityEscape(text){
+		local.toReturn = [];
+		local.length = len(arguments.text);
+		for(local.i = 1; local.i LTE local.length; local.i++){
+			local.char = mid(arguments.text, local.i, 1);
+			local.ascii = asc(local.char);
+			arrayAppend(local.toReturn, "&###local.ascii#;");
+		}
+		return "#arrayToList(local.toReturn, '')#";
+	}
+	
+	
 	include "/layout/template-close.cfm";
 </cfscript>
