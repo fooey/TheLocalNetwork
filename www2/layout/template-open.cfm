@@ -9,6 +9,7 @@
 	<meta charset="utf-8">
 	<cfoutput><title>#head.title#</title></cfoutput>
 	<cfoutput><meta name="description" content="#head.description#"></cfoutput>
+	<meta name="WebsiteSpark" content="vhVGE5gIly" />
 	
 	<!--[if lt IE 9]>
 		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
