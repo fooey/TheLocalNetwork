@@ -1,0 +1,87 @@
+/*
+ * page level overrides/tweaks
+ */
+
+
+
+body {
+	background: #0064cd url(/static/img/bg.vertical.png) center top repeat-y;
+	font-size: 10pt;
+}
+
+.page-subheader {
+  padding-bottom: 7px;
+  margin: 8px 0;
+  border-bottom: 1px solid #eeeeee;
+}
+
+
+
+
+/*
+ * topbar overrides/tweaks
+ */
+
+.navbar a.brand{
+	display: block;
+	text-indent: -999px;
+	width: 300px;
+	height: 40px;
+	padding: 0;
+	margin: 0;
+	background:url(/static/img/logo-hor-small-sprite.png) no-repeat left top;
+}
+.navbar a.brand:hover{
+	background-position: left bottom;
+}
+
+tr > .num{
+	text-align: right;
+}
+
+
+
+
+footer{
+	margin-top: 4em;
+	margin-bottom: 2em;
+	text-align: center;
+}
+
+
+
+/*!
+ * 
+ * star ratings
+ * 
+ */
+.starsSmall{width: 70px; height: 14px; display: inline-block; background: url(/static/img/stars14.png) 0 -28px repeat;}
+.starsSmall .starRating{height: 14px; display: inline-block; background: url(/static/img/stars14.png) 0 -42px repeat;}
+.starsSmallLabel{display: inline-block; height: 14px; line-height: 14px}
+
+.stars{width: 90px; height: 18px; display: inline-block; background: url(/static/img/stars18.png) 0 -36px repeat;}
+.stars .starRating{height: 18px; display: inline-block; background: url(/static/img/stars18.png) 0 -54px repeat;}
+.starsLabel{display: inline-block; height: 18px; line-height: 18px; vertical-align: middle;}
+
+.starsBig{width: 140px; height: 28px; display: inline-block; background: url(/static/img/stars28.png) 0 -56px repeat;}
+.starsBig .starRating{height: 28px; display: inline-block; background: url(/static/img/stars28.png) 0 -84px repeat;}
+.starsBig .starNoRating{width: 140px;height: 28px; display: inline-block; background: url(/static/img/stars28.png) 0 -112px repeat;}
+.starsLabelBig{ display: inline-block; line-height: 28px; height: 28px; vertical-align: middle;}
+
+
+
+
+
+
+/*!
+ * 
+ * moderating pages
+ * 
+ */
+
+.userContentSection{
+	margin-bottom: 40px;
+}
+.userContentSection .buttons{
+	text-align: center;
+}
