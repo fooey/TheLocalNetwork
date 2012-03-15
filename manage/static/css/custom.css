@@ -85,3 +85,6 @@ footer{
 .userContentSection .buttons{
 	text-align: center;
 }
+.userContent p{
+	text-indent: 1.5em;
+}

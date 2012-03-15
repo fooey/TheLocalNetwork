@@ -15,7 +15,7 @@
 		else{
 			throw("invalid action: #form.action#");
 		}
-		application.cfc.cfscript.header(statusCode=204);
+		application.util.cfscript.header(statusCode=204);
 		abort;
 	}
 	
@@ -44,51 +44,66 @@
 </div>
 		
 <cfoutput query="qryUnapprovedReviews">
-<form class="row userContentSection" action="#cgi.script_name#?rId=#id#" method="post">
-	<div class="span12">
+	<cfset facilityLink = application.cfc.networkNav.getFacilityLink(
+		siteId = url.siteId,
+		uid = qryUnapprovedReviews.uid,
+		facilityType = qryUnapprovedReviews.type
+	) />
+	
+	<form class="row userContentSection" action="#cgi.script_name#?rId=#id#" method="post">
+		<div class="span12">
 			
-		
-		<div class="row">
-			<div class="span9">
-				
-				<h4 class="page-subheader">#facilityName# (#uid#)</h4><!--- #type# --->
-				<div class="userContent">#paragraphFormat(htmlEditFormat(review))#</div>
-				
-			</div>
-			<div class="span3">
-				<h4 class="page-subheader">Submitted: #dateFormat(dateRated, 'mmm dd')#</h4><!--- #type# --->
-				<table width='100%'>
-					<col>
-					<col width="#5*18#">
-					<tr>
-						<td>User Rating</td>
-						<td><div class="starsContainer"><span class="stars"><span class="starRating" style="width: #rating * 18#px"></span></span></div></td>
-					</tr>
-					<tr>
-						<td>Average Rating</td>
-						<td><div class="starsContainer"><span class="stars"><span class="starRating" style="width: #ratingAvg * 18#px"></span></span></div></td>
-					</tr>
-					<tr>
-						<td>Gov Rating</td>
-						<cfif isNumeric(govRating)>
-							<td><div class="starsContainer"><span class="stars"><span class="starRating" style="width: #govRating * 18#px"></span></span></div></td>
-						</cfif>
-					</tr>
-				</table>
-				
-				<hr>
-				
-				<div class="buttons">
-					<input type="submit" name="action" value="Approve" class="btn btn-success" />
-					<input type="submit" name="action" value="Delete" class="btn" />
-					<input type="submit" name="action" value="Filter" class="btn" />
+			<div class="row">
+				<div class="span9">
+					
+					<h4 class="page-subheader"><a href="#facilityLink#" target="_blank">#application.util.string.titleCase(facilityName)#</a></h4>
+					<div class="userContent">
+						<p>#listChangeDelims(htmlEditFormat(review), "</p><p>", chr(10))#</p>
+					</div>
+					
 				</div>
-				
+				<div class="span3">
+					<h4 class="page-subheader">Submitted: #dateFormat(dateRated, 'ddd, mmm dd')#</h4><!--- #type# --->
+					<table width='100%'>
+						<col>
+						<col width="#5*18#">
+						<tr>
+							<td>ProvNum</td>
+							<td>#qryUnapprovedReviews.uid#</td>
+						</tr>
+						<tr>
+							<td>ReviewId</td>
+							<td>#qryUnapprovedReviews.id#</td>
+						</tr>
+						<tr>
+							<td>User Rating</td>
+							<td><div class="starsContainer"><span class="stars"><span class="starRating" style="width: #rating * 18#px"></span></span></div></td>
+						</tr>
+						<tr>
+							<td>Average Rating</td>
+							<td><div class="starsContainer"><span class="stars"><span class="starRating" style="width: #ratingAvg * 18#px"></span></span></div></td>
+						</tr>
+						<tr>
+							<td>Gov Rating</td>
+							<cfif isNumeric(govRating)>
+								<td><div class="starsContainer"><span class="stars"><span class="starRating" style="width: #govRating * 18#px"></span></span></div></td>
+							</cfif>
+						</tr>
+					</table>
+					
+					<hr>
+					
+					<div class="buttons">
+						<input type="submit" name="action" value="Approve" class="btn btn-success" />
+						<input type="submit" name="action" value="Delete" class="btn" />
+						<input type="submit" name="action" value="Filter" class="btn" />
+					</div>
+					
+				</div>
 			</div>
+			
 		</div>
-		
-	</div>
-</form>
+	</form>
 </cfoutput>
 	
 	

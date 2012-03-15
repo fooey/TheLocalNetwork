@@ -46,6 +46,13 @@
 		public boolean function onApplicationStart(){
 			application.paths.rel.root = '/manage';
 			
+			application.host.machineName = CreateObject("java", "java.net.InetAddress").getLocalHost().getHostName();
+			application.host.addr = CreateObject("java", "java.net.InetAddress").getLocalHost().getHostAddress();
+			
+			application.isDev = (application.host.machineName EQ "DEV" OR application.host.machineName EQ "Jason-PC");
+			application.isProd = (NOT application.isDev);
+			
+			initCacheSettings();
 			initComponents();
 	
 			return true;
@@ -58,8 +65,9 @@
 				resetHandler();
 			}
 			
-			request.remoteAddr = application.cfc.net.getRemoteAddr();
-			if(request.remoteAddr EQ "127.0.0.1"){
+			request.remoteAddr = application.util.net.getRemoteAddr();
+			if(application.isDev){
+				initCacheSettings();
 				initComponents();
 			}
 			
@@ -119,11 +127,36 @@
 		
 		
 		private void function initComponents(){
-			application.cfc.net = new lib.cfc.net();
-			application.cfc.cfscript = new lib.cfc.cfscript();
+			application.util.net = new lib.cfc.net();
+			application.util.cfscript = new lib.cfc.cfscript();
+			application.util.string = new lib.cfc.stringUtils();
+			
 			application.cfc.auth = new cfc.auth();
+			application.cfc.networkNav = new cfc.networkNav();
+			
+			application.cfc.sites = new lib.cfc.TheLocalNetwork.sites();
+			application.cfc.userContent = new lib.cfc.TheLocalNetwork.userContent();
+			
 			application.cfc.userContent = new lib.cfc.TheLocalNetwork.userContent();
 		}
+		
+		
+		
+		private void function initCacheSettings(){
+			application.cache.time.persist = CreateTimeSpan(1,0,0,0);
+			application.cache.time.high = application.cache.time.national = CreateTimeSpan(0,1,0,0);
+			application.cache.time.med = application.cache.time.state = CreateTimeSpan(0,0,15,0);
+			application.cache.time.low = application.cache.time.local = CreateTimeSpan(0,0,5,0);
+			application.cache.time.min = CreateTimeSpan(0,0,0,15);
+			
+			application.cache.idle.persist = application.cache.time.high;
+			application.cache.idle.high = application.cache.idle.national = application.cache.time.med;
+			application.cache.idle.med = application.cache.idle.state = application.cache.time.low;
+			application.cache.idle.low = application.cache.idle.local = CreateTimeSpan(0,0,1,0);
+			application.cache.idle.min = CreateTimeSpan(0,0,0,3);
+		}
+		
+		
 		
 	
 		private void function resetHandler(){

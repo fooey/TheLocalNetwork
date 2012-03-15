@@ -15,7 +15,7 @@
 		else{
 			throw("invalid action: #form.action#");
 		}
-		application.cfc.cfscript.header(statusCode=204);
+		application.util.cfscript.header(statusCode=204);
 		abort;
 	}
 	

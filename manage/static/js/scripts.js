@@ -3,7 +3,7 @@ head.ready(function(){
     "use strict";
 	
 	
-	$('form').find('input').on('click', function(e){
+	$('form.userContentSection').find('input').on('click', function(e){
 		e.preventDefault();
 		
 		var $btn = $(this);
@@ -34,6 +34,8 @@ head.ready(function(){
 			})
 		    .done(function() {
 				$(this).slideUp().remove();
+				var numRemaining = $('.userContentSection').length;
+				$('.nav-tabs .active span').text(numRemaining);
 			})
 		    .fail(function(jqXHR, textStatus) {
 				$form
