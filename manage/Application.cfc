@@ -247,17 +247,18 @@
 
 
 	<!--- Runs on error --->
-	<!---<cffunction
+	<cffunction
 		name="onError"
 		access="public"
 		returntype="void"
 		output="true"
 		hint="I handle any uncaught errors within the application.">
 
+		<cfdump var="#arguments#">
 
 		<!--- Return out. --->
 		<cfreturn />
-	</cffunction>--->
+	</cffunction>
 	
 	
 	
