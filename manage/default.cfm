@@ -7,14 +7,16 @@
 	SELECT
 		userRating = cast(isNull(avg(ra.ratingAvg),0) AS decimal(2,1)),
 		userRatingCount = ISNULL(SUM(ratingCount), 0),
-		userReviewCount = ISNULL(SUM(reviewCount), 0)
+		userReviewCount = ISNULL(SUM(reviewCount), 0),
+		userReplyCount = (SELECT COUNT(*) FROM RatingReplies  WITH(READUNCOMMITTED))
 	FROM Logging.dbo.RatingsAggregate ra WITH(READUNCOMMITTED)
 </cfquery>
 <cfquery name="qryLnhTotals">
 	SELECT
 		userRating = cast(isNull(avg(ra.ratingAvg),0) AS decimal(2,1)),
 		userRatingCount = ISNULL(SUM(ratingCount), 0),
-		userReviewCount = ISNULL(SUM(reviewCount), 0)
+		userReviewCount = ISNULL(SUM(reviewCount), 0),
+		userReplyCount = (SELECT COUNT(*) FROM RatingReplies  WITH(READUNCOMMITTED))
 	FROM Logging.dbo.RatingsAggregate ra WITH(READUNCOMMITTED)
 	WHERE siteId = 1
 </cfquery>
@@ -22,43 +24,44 @@
 	SELECT
 		userRating = cast(isNull(avg(ra.ratingAvg),0) AS decimal(2,1)),
 		userRatingCount = ISNULL(SUM(ratingCount), 0),
-		userReviewCount = ISNULL(SUM(reviewCount), 0)
+		userReviewCount = ISNULL(SUM(reviewCount), 0),
+		userReplyCount = 0
 	FROM Logging.dbo.RatingsAggregate ra WITH(READUNCOMMITTED)
 	WHERE siteId <> 1
 </cfquery>
 <cfquery name="qryTimeline">
 	DECLARE @today DATE = sysDateTime();
-	DECLARE @minDate DATE = dateAdd(dy, -90, @today)
+	DECLARE @minDate DATE = dateAdd(dy, -30, @today)
 	
 	; WITH
 		ratingsAgg AS (
 			SELECT
-				weekRated = convert(date, dateadd(week, datediff(week, 0, dateRated), 0)),
+				dayRated = convert(date, dateRated),
 				userRating = cast(isNull(avg(rating),0) AS decimal(2,1)),
 				userRatingCount = ISNULL(COUNT(*), 0),
 				userReviewCount = ISNULL(COUNT(review), 0)
 			FROM Logging.dbo.Ratings WITH(READUNCOMMITTED)
 			WHERE dateRated >= @minDate
-			GROUP BY dateadd(week, datediff(week, 0, dateRated), 0)
+			GROUP BY convert(date, dateRated)
 		)
 		, repliesAgg AS (
 			SELECT
-				weekReplied = CONVERT(date, dateadd(week, datediff(week, 0, rr_date), 0)),
+				dayReplied = CONVERT(date, rr_date),
 				replyCount = ISNULL(COUNT(*), 0)
 			FROM Logging.dbo.ratingReplies WITH(READUNCOMMITTED)
 			WHERE rr_date >= @minDate
-			GROUP BY dateadd(week, datediff(week, 0, rr_date), 0)
+			GROUP BY CONVERT(date, rr_date)
 		)
 	
 	SELECT
-		weekRated,
+		dayRated,
 		userRatingCount,
 		userReviewCount,
-		weekReplied = ISNULL(weekReplied, weekRated),
+		dayReplied = ISNULL(dayReplied, dayRated),
 		replyCount = ISNULL(replyCount, 0)
 	FROM ratingsAgg
-		LEFT JOIN repliesAgg ON weekRated = weekReplied
-	ORDER BY weekRated
+		LEFT JOIN repliesAgg ON dayRated = dayReplied
+	ORDER BY dayRated
 </cfquery>
 
 <div class="row">
@@ -118,15 +121,21 @@
 				</tr>
 				<tr>
 					<th>Total Number of Ratings</th>
-					<td class="num">#decimalFormat(qryTotals.userRatingCount)#</td>
-					<td class="num">#decimalFormat(qryLnhTotals.userRatingCount)#</td>
-					<td class="num">#decimalFormat(qryNotLnhTotals.userRatingCount)#</td>
+					<td class="num">#numberFormat(qryTotals.userRatingCount)#</td>
+					<td class="num">#numberFormat(qryLnhTotals.userRatingCount)#</td>
+					<td class="num">#numberFormat(qryNotLnhTotals.userRatingCount)#</td>
 				</tr>
 				<tr>
 					<th>Total Number of Reviews</th>
-					<td class="num">#decimalFormat(qryTotals.userReviewCount)#</td>
-					<td class="num">#decimalFormat(qryLnhTotals.userReviewCount)#</td>
-					<td class="num">#decimalFormat(qryNotLnhTotals.userReviewCount)#</td>
+					<td class="num">#numberFormat(qryTotals.userReviewCount)#</td>
+					<td class="num">#numberFormat(qryLnhTotals.userReviewCount)#</td>
+					<td class="num">#numberFormat(qryNotLnhTotals.userReviewCount)#</td>
+				</tr>
+				<tr>
+					<th>Total Number of Review Replies</th>
+					<td class="num">#numberFormat(qryTotals.userReplyCount)#</td>
+					<td class="num">#numberFormat(qryLnhTotals.userReplyCount)#</td>
+					<td class="num">#numberFormat(qryNotLnhTotals.userReplyCount)#</td>
 				</tr>
 			</tbody>
 		</table>
@@ -135,26 +144,26 @@
 		<cfchart chartwidth="700" chartheight="460" showmarkers="0" showlegend="true" showXgridlines="true" showYgridlines="true">
 			<cfchartseries
 				type="line"
-				serieslabel="Ratings by Week"
+				serieslabel="Ratings by Day"
 				seriescolor="##049CDB"
 				query="qryTimeline"
 				valuecolumn="userRatingCount"
-				itemcolumn="weekRated">
+				itemcolumn="dayRated">
 			<cfchartseries
 				type="line"
-				serieslabel="Reviews by Week"
+				serieslabel="Reviews by Day"
 				seriescolor="##46a546"
 				query="qryTimeline"
 				valuecolumn="userReviewCount"
-				itemcolumn="weekRated">
+				itemcolumn="dayRated">
 			</cfchartseries>
 			<cfchartseries
 				type="line"
-				serieslabel="Replies by Week"
+				serieslabel="Replies by Day"
 				seriescolor="##ffc40d"
 				query="qryTimeline"
 				valuecolumn="replyCount"
-				itemcolumn="weekReplied">
+				itemcolumn="dayReplied">
 			</cfchartseries>
 		</cfchart>
 		
