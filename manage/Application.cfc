@@ -134,10 +134,8 @@
 			application.cfc.auth = new cfc.auth();
 			application.cfc.networkNav = new cfc.networkNav();
 			
-			application.cfc.sites = new lib.cfc.TheLocalNetwork.sites();
-			application.cfc.userContent = new lib.cfc.TheLocalNetwork.userContent();
-			
-			application.cfc.userContent = new lib.cfc.TheLocalNetwork.userContent();
+			application.cfc.sites = new lib.cfc.TheLocalNetwork.sites(datasource = this.datasource);
+			application.cfc.userContent = new lib.cfc.TheLocalNetwork.userContent(datasource = this.datasource);
 		}
 		
 		
