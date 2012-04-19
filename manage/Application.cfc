@@ -71,6 +71,7 @@
 				initComponents();
 			}
 			
+			noCacheHeaders();
 			checkAuth();
 		}
 		
@@ -94,6 +95,13 @@
 
 	<!--- Application.cfc utility functions --->
 	<cfscript>
+		private void function noCacheHeaders(){
+			application.util.cfscript.header(name="Pragma", value="no-cache");
+			application.util.cfscript.header(name="Cache-Control", value="no-cache");
+			application.util.cfscript.header(name="Expires", value="0");
+			
+			application.util.cfscript.htmlHead(text='#chr(9)#<meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Cache-Control" content="no-cache"><meta http-equiv="Expires" content="0">#chr(10)#');
+		}
 		
 		
 		
@@ -101,7 +109,7 @@
 			if(isUserAttemptingAuth()){
 				session.user = application.cfc.auth.getUserByAuth(form.username, form.password);
 				if(session.user.getId()){
-					location(url="#application.paths.rel.root#/", addtoken="no");
+					location(url="#cgi.script_name#", addtoken="no");
 				}
 			}
 			if(NOT session.user.getId()){

@@ -2,7 +2,7 @@
 	include "/layout/template-open.cfm";
 	
 	param name="form.username" default="";  
-	param name="form.password" default="";  
+	param name="form.password" default="";
 </cfscript>
 
 
