@@ -20,9 +20,10 @@
 	}
 	
 	
-	param name="url.siteId" type="numeric" default="1";  
+	param name="url.siteId" type="numeric" default="1";
+	param name="url.ipAddress" type="string" default="any";
 	qryUnapprovedRepliesSummary = application.cfc.userContent.getUnapprovedRepliesSummary();
-	qryUnapprovedReplies = application.cfc.userContent.getUnapprovedReplies(siteId = url.siteId);
+	qryUnapprovedReplies = application.cfc.userContent.getUnapprovedReplies(siteId = url.siteId, ipAddress = url.ipAddress);
 	
 	
 	
@@ -49,7 +50,10 @@
 	<div class="span12">
 			
 		<h4 class="page-subheader">
-			Submitted: #dateFormat(rr_date, 'mmm dd')# - reply to <a href="http://local-nursing-homes.com/?rid=#rr_ra_id#" target=_blank>#rr_ra_id#</a>
+			Submitted: #dateFormat(rr_date, 'mmm dd')#
+			at #timeFormat(rr_date, 'hh:mm:tt')#
+			from <a href="./replies.cfm?siteId=#siteId#&ipAddress=#rr_ipAddress#">#rr_ipAddress#</a>
+			- reply to <a href="http://local-nursing-homes.com/?rid=#rr_ra_id#" target=_blank>#rr_ra_id#</a>
 		</h4>
 		
 		<div class="row">
