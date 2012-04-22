@@ -42,6 +42,7 @@
 				userReviewCount = ISNULL(COUNT(review), 0)
 			FROM Logging.dbo.Ratings WITH(READUNCOMMITTED)
 			WHERE dateRated >= @minDate
+				AND filtered <> 1
 			GROUP BY convert(date, dateRated)
 		)
 		, repliesAgg AS (
@@ -50,6 +51,7 @@
 				replyCount = ISNULL(COUNT(*), 0)
 			FROM Logging.dbo.ratingReplies WITH(READUNCOMMITTED)
 			WHERE rr_date >= @minDate
+				AND rr_dateFiltered IS NULL
 			GROUP BY CONVERT(date, rr_date)
 		)
 	
@@ -141,7 +143,7 @@
 		</table>
 		</cfoutput>
 			
-		<cfchart chartwidth="700" chartheight="460" showmarkers="0" showlegend="true" showXgridlines="true" showYgridlines="true">
+		<cfchart chartwidth="700" chartheight="460" showmarkers="0" showlegend="true" showXgridlines="true" showYgridlines="true" format="png" >
 			<cfchartseries
 				type="line"
 				serieslabel="Ratings by Day"
