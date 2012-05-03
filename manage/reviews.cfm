@@ -2,15 +2,16 @@
 	if(cgi.REQUEST_METHOD EQ "POST"){
 		param name="url.rId"; 
 		param name="form.action"; 
+		param name="form.publicize" default="false"; 
 		
 		if (form.action EQ "Approve"){
-			 application.cfc.userContent.approveReview(url.rId);
+			 application.cfc.userContent.approveReview(reviewId = url.rId, publicize=form.publicize);
 		}
 		else if(form.action EQ "Delete"){
-			 application.cfc.userContent.deleteReview(url.rId);
+			 application.cfc.userContent.deleteReview(reviewId = url.rId);
 		}
 		else if(form.action EQ "Filter"){
-			 application.cfc.userContent.filterReview(url.rId);
+			 application.cfc.userContent.filterReview(reviewId = url.rId);
 		}
 		else{
 			throw("invalid action: #form.action#");
@@ -50,7 +51,7 @@
 		facilityType = qryUnapprovedReviews.type
 	) />
 	
-	<form class="row userContentSection" action="#cgi.script_name#?rId=#id#" method="post">
+	<form class="form-inline row userContentSection" action="#cgi.script_name#?rId=#id#" method="post">
 		<div class="span12">
 			
 			<div class="row">
@@ -93,10 +94,16 @@
 					
 					<hr>
 					
-					<div class="buttons">
-						<input type="submit" name="action" value="Approve" class="btn btn-success" />
-						<input type="submit" name="action" value="Delete" class="btn" />
-						<input type="submit" name="action" value="Filter" class="btn" />
+					<div class="control-group">
+						<div class="buttons">
+							<input type="submit" name="action" value="Approve" class="btn btn-success" />
+							<input type="submit" name="action" value="Delete" class="btn" />
+							<input type="submit" name="action" value="Filter" class="btn" />
+						</div>
+					</div>
+					
+					<div class="control-group">
+						<div align="center"><span class="btn publicize" data-toggle="button">Publicize?</span></div>
 					</div>
 					
 				</div>

@@ -3,11 +3,12 @@ head.ready(function(){
     "use strict";
 	
 	
-	$('form.userContentSection').find('input').on('click', function(e){
+	$('form.userContentSection').find('.buttons input').on('click', function(e){
 		e.preventDefault();
 		
 		var $btn = $(this);
 		var $form = $btn.closest('form');
+		var $pub = $form.find('.publicize');
 		
 		var action = $btn.val();
 		
@@ -29,7 +30,8 @@ head.ready(function(){
 				cache: false,
 				context: $form,
 				data:{
-					action : action
+					action: action,
+					publicize: $pub.hasClass('active')
 				}
 			})
 		    .done(function() {
