@@ -9,7 +9,7 @@
 		userRatingCount = ISNULL(SUM(ratingCount), 0),
 		userReviewCount = ISNULL(SUM(reviewCount), 0),
 		userReplyCount = (SELECT COUNT(*) FROM RatingReplies  WITH(READUNCOMMITTED))
-	FROM Logging.dbo.RatingsAggregate ra WITH(READUNCOMMITTED)
+	FROM Logging.dbo.VIEW_RatingsAggregate ra WITH(READUNCOMMITTED)
 </cfquery>
 <cfquery name="qryLnhTotals">
 	SELECT
@@ -17,7 +17,7 @@
 		userRatingCount = ISNULL(SUM(ratingCount), 0),
 		userReviewCount = ISNULL(SUM(reviewCount), 0),
 		userReplyCount = (SELECT COUNT(*) FROM RatingReplies  WITH(READUNCOMMITTED))
-	FROM Logging.dbo.RatingsAggregate ra WITH(READUNCOMMITTED)
+	FROM Logging.dbo.VIEW_RatingsAggregate ra WITH(READUNCOMMITTED)
 	WHERE siteId = 1
 </cfquery>
 <cfquery name="qryNotLnhTotals">
@@ -26,7 +26,7 @@
 		userRatingCount = ISNULL(SUM(ratingCount), 0),
 		userReviewCount = ISNULL(SUM(reviewCount), 0),
 		userReplyCount = 0
-	FROM Logging.dbo.RatingsAggregate ra WITH(READUNCOMMITTED)
+	FROM Logging.dbo.VIEW_RatingsAggregate ra WITH(READUNCOMMITTED)
 	WHERE siteId <> 1
 </cfquery>
 <cfquery name="qryTimeline">
