@@ -37,7 +37,8 @@ head.ready(function(){
 		    .done(function() {
 				$(this).slideUp().remove();
 				var numRemaining = $('.userContentSection').length;
-				$('.nav-tabs .active span').text(numRemaining);
+				var $counter = $('.nav-tabs .active span');
+				$counter.text($counter.text()-1);
 			})
 		    .fail(function(jqXHR, textStatus) {
 				$form
