@@ -1,3 +1,5 @@
+<cfsetting requesttimeout="#5 * 60#" />
+
 <cfscript>
 	crcObj = createObject('java', 'java.util.zip.CRC32');
 	
