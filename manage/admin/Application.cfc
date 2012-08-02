@@ -183,7 +183,7 @@
 
 
 	<!--- Runs on error --->
-	<!---<cffunction
+	<cffunction
 		name="onError"
 		access="public"
 		returntype="void"
@@ -194,7 +194,7 @@
 
 		<!--- Return out. --->
 		<cfreturn />
-	</cffunction>--->
+	</cffunction>
 	
 	
 	
