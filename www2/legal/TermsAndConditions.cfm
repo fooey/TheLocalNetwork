@@ -248,7 +248,7 @@
 				
 				<cfoutput><address>
 					The Local Network LLC
-					Attn: #nameEncoded#
+					Attn: #nameEncoded & chr(10)#
 					#addressEncoded#
 					St. George, UT 84790
 					Telephone: #phoneEncoded#
