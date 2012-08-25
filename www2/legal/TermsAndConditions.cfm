@@ -241,17 +241,19 @@
 					Notices of claims of copyright infringement can be sent to the following address:
 				</p>
 				
-				<cfset phoneEncoded = entityEscape('435-674-0525') />
+				<cfset phoneEncoded = entityEscape('(435) 319-0096') />
 				<cfset emailEncoded = entityEscape('jrushton@the-ln.com') />
-				<address>
+				<cfset nameEncoded = entityEscape('Jason W. Rushton') />
+				<cfset addressEncoded = entityEscape('2847 East 1290 South') />
+				
+				<cfoutput><address>
 					The Local Network LLC
-					Attn: Jason W. Rushton
-					2847 East 1290 South
+					Attn: #nameEncoded#
+					#addressEncoded#
 					St. George, UT 84790
-					Telephone: <cfoutput>#phoneEncoded#</cfoutput>
-					Email: <cfoutput><a href="mailto:#emailEncoded#">#emailEncoded#</a></cfoutput>
-					
-				</address>
+					Telephone: #phoneEncoded#
+					Email: <a href="mailto:#emailEncoded#">#emailEncoded#</a>
+				</address></cfoutput>
 			</div>
 			
 		</div>
