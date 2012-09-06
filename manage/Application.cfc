@@ -21,7 +21,7 @@
 		};
 
 		this.sessionmanagement = "true";
-		this.sessiontimeout = createTimeSpan(0,0,15,0);
+		this.sessiontimeout = createTimeSpan(3,0,15,0);
 
 		this.clientmanagement= "false";
 		//this.clientStorage = "CF_ClientVariables";
