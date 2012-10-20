@@ -61,6 +61,13 @@
 					<div class="userContent">
 						<p>#listChangeDelims(htmlEditFormat(review), "</p><p>", chr(10))#</p>
 					</div>
+					<hr>
+					<cfset stateTag = "##" & REReplaceNoCase(qryUnapprovedReviews.stateName, "[^a-z]", "", "ALL") />
+					<cfset cityTag = "##" & REReplaceNoCase(qryUnapprovedReviews.cityName, "[^a-z]", "", "ALL") />
+					
+					<div class="userContent">
+						<textarea rows="3" style="width:100%;">#application.util.string.titleCase(facilityName)# #rating# star review at http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id# #cityTag# #stateTag# ##Review ##ElderCare</textarea>
+					</div>
 					
 				</div>
 				<div class="span3">
