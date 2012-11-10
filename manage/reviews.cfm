@@ -45,11 +45,49 @@
 </div>
 		
 <cfoutput query="qryUnapprovedReviews">
-	<cfset facilityLink = application.cfc.networkNav.getFacilityLink(
-		siteId = url.siteId,
-		uid = qryUnapprovedReviews.uid,
-		facilityType = qryUnapprovedReviews.type
-	) />
+	<cfscript>
+		facilityLink = application.cfc.networkNav.getFacilityLink(
+			siteId = url.siteId,
+			uid = qryUnapprovedReviews.uid,
+			facilityType = qryUnapprovedReviews.type
+		);
+		
+		htmlEscapedReview = htmlEditFormat(review);
+		reviewHtml = listChangeDelims(htmlEscapedReview, "</p><p>", chr(10));
+		
+		stateTag = "##" & REReplaceNoCase(qryUnapprovedReviews.stateName, "[^a-z]", "", "ALL");
+		cityTag = "##" & REReplaceNoCase(qryUnapprovedReviews.cityName, "[^a-z]", "", "ALL");
+		
+		twitterMsg = "#application.util.string.titleCase(facilityName)# #rating# star review: http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id# #cityTag# #stateTag# ##Review ##ElderCare";
+		
+		fbMsg = (
+			"#application.util.string.titleCase(facilityName)# #rating# Star Review"
+			& chr(10)
+			& "http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id#"
+			& chr(10)
+			& chr(10)
+		);
+		fbReview = application.util.string.abbreviate(
+			inputString = htmlEscapedReview,
+			maxLength = (410-len(fbMsg)),
+			breakWords = false
+		);
+		if(htmlEscapedReview NEQ fbReview){
+			fbReview &= "...";
+		}
+		fbReview = chr(34) & fbReview & chr(34);
+		
+		fbMsg &= fbReview;
+		
+		gPlusMsg = (
+			"#application.util.string.titleCase(facilityName)# #rating# Star Review" & chr(13) & chr(10)
+			& chr(13) & chr(10)
+			& fbReview & chr(13) & chr(10)
+			& chr(13) & chr(10)
+			& "#cityTag# #stateTag# ##Review ##ElderCare" & chr(13) & chr(10)
+			& "http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id#"
+		);
+	</cfscript>
 	
 	<form class="form-inline row userContentSection" action="#cgi.script_name#?rId=#id#" method="post">
 		<div class="span12">
@@ -59,14 +97,29 @@
 					
 					<h4 class="page-subheader"><a href="#facilityLink#" target="_blank">#application.util.string.titleCase(facilityName)#</a></h4>
 					<div class="userContent">
-						<p>#listChangeDelims(htmlEditFormat(review), "</p><p>", chr(10))#</p>
+						<p>#reviewHtml#</p>
 					</div>
 					<hr>
-					<cfset stateTag = "##" & REReplaceNoCase(qryUnapprovedReviews.stateName, "[^a-z]", "", "ALL") />
-					<cfset cityTag = "##" & REReplaceNoCase(qryUnapprovedReviews.cityName, "[^a-z]", "", "ALL") />
 					
-					<div class="userContent">
-						<textarea rows="3" style="width:100%;">#application.util.string.titleCase(facilityName)# #rating# star review at http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id# #cityTag# #stateTag# ##Review ##ElderCare</textarea>
+					<div class="row">
+						<div class="span3">
+							<div class="userContent">
+								<h7>Twitter</h7>
+								<textarea rows="3" style="width:100%;">#twitterMsg#</textarea>
+							</div>
+						</div>
+						<div class="span3">
+							<div class="userContent">
+								<h7>Facebook</h7>
+								<textarea rows="3" style="width:100%;">#fbMsg#</textarea>
+							</div>
+						</div>
+						<div class="span3">
+							<div class="userContent">
+								<h7>Google+</h7>
+								<textarea rows="3" style="width:100%;">#gPlusMsg#</textarea>
+							</div>
+						</div>
 					</div>
 					
 				</div>
