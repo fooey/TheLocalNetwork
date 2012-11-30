@@ -53,7 +53,7 @@
 		);
 		
 		htmlEscapedReview = htmlEditFormat(review);
-		reviewHtml = listChangeDelims(htmlEscapedReview, "</p><p>", chr(10));
+		reviewHtml = listChangeDelims(trim(htmlEscapedReview), "</p><p>", chr(10));
 		
 		stateTag = "##" & REReplaceNoCase(qryUnapprovedReviews.stateName, "[^a-z]", "", "ALL");
 		cityTag = "##" & REReplaceNoCase(qryUnapprovedReviews.cityName, "[^a-z]", "", "ALL");
@@ -61,7 +61,7 @@
 		twitterMsg = "#application.util.string.titleCase(facilityName)# #rating# star review: http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id# #cityTag# #stateTag# ##Review ##ElderCare";
 		
 		fbMsg = (
-			"#application.util.string.titleCase(facilityName)# #rating# Star Review"
+			"New #rating# Star User Review of #application.util.string.titleCase(facilityName)# located in #qryUnapprovedReviews.cityName#, #qryUnapprovedReviews.stateName#"
 			& chr(10)
 			& "http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id#"
 			& chr(10)
@@ -79,10 +79,21 @@
 		
 		fbMsg &= fbReview;
 		
+		
+		googReview = application.util.string.abbreviate(
+			inputString = htmlEscapedReview,
+			maxLength = 400,
+			breakWords = false
+		);
+		if(htmlEscapedReview NEQ googReview){
+			googReview &= "...";
+		}
+		googReview = chr(34) & googReview & chr(34);
+		
 		gPlusMsg = (
 			"#application.util.string.titleCase(facilityName)# #rating# Star Review" & chr(13) & chr(10)
 			& chr(13) & chr(10)
-			& fbReview & chr(13) & chr(10)
+			& googReview & chr(13) & chr(10)
 			& chr(13) & chr(10)
 			& "#cityTag# #stateTag# ##Review ##ElderCare" & chr(13) & chr(10)
 			& "http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id#"
@@ -105,19 +116,19 @@
 						<div class="span3">
 							<div class="userContent">
 								<h7>Twitter</h7>
-								<textarea rows="3" style="width:100%;">#twitterMsg#</textarea>
+								<textarea rows="4">#twitterMsg#</textarea>
 							</div>
 						</div>
 						<div class="span3">
 							<div class="userContent">
 								<h7>Facebook</h7>
-								<textarea rows="3" style="width:100%;">#fbMsg#</textarea>
+								<textarea rows="4">#fbMsg#</textarea>
 							</div>
 						</div>
 						<div class="span3">
 							<div class="userContent">
 								<h7>Google+</h7>
-								<textarea rows="3" style="width:100%;">#gPlusMsg#</textarea>
+								<textarea rows="4">#gPlusMsg#</textarea>
 							</div>
 						</div>
 					</div>
