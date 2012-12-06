@@ -29,6 +29,12 @@
 	FROM Logging.dbo.VIEW_RatingsAggregate ra WITH(READUNCOMMITTED)
 	WHERE siteId <> 1
 </cfquery>
+<cfquery name="qrySubs">
+	SELECT
+		subCount = COUNT(*),
+		unqCount = COUNT(DISTINCT sub_email)
+	FROM Logging.dbo.Subscriptions s WITH(READUNCOMMITTED)
+</cfquery>
 <cfquery name="qryTimeline">
 	DECLARE @today DATE = sysDateTime();
 	DECLARE @minDate DATE = dateAdd(dy, -30, @today)
@@ -54,15 +60,26 @@
 				AND rr_dateFiltered IS NULL
 			GROUP BY CONVERT(date, rr_date)
 		)
+		, subsAgg AS (
+			SELECT
+				daySub = CONVERT(date, sub_dateTime),
+				subsCount = ISNULL(COUNT(*), 0)
+			FROM Logging.dbo.Subscriptions WITH(READUNCOMMITTED)
+			WHERE sub_dateTime >= @minDate
+			GROUP BY CONVERT(date, sub_dateTime)
+		)
 	
 	SELECT
 		dayRated,
 		userRatingCount,
 		userReviewCount,
 		dayReplied = ISNULL(dayReplied, dayRated),
-		replyCount = ISNULL(replyCount, 0)
+		replyCount = ISNULL(replyCount, 0),
+		daySub = ISNULL(daySub, dayRated),
+		subsCount = ISNULL(subsCount, 0)
 	FROM ratingsAgg
 		LEFT JOIN repliesAgg ON dayRated = dayReplied
+		LEFT JOIN subsAgg ON dayRated = daySub
 	ORDER BY dayRated
 </cfquery>
 
@@ -150,6 +167,12 @@
 					<td class="num">#numberFormat(qryLnhTotals.userReplyCount)#</td>
 					<td class="num">#numberFormat(qryNotLnhTotals.userReplyCount)#</td>
 				</tr>
+				<tr>
+					<th>Total Number of Subscriptions</th>
+					<td class="num">#numberFormat(qrySubs.subCount)#</td>
+					<td class="num"></td>
+					<td class="num">#numberFormat(qrySubs.unqCount)#</td>
+				</tr>
 			</tbody>
 		</table>
 		</cfoutput>
@@ -177,6 +200,13 @@
 				query="qryTimeline"
 				valuecolumn="replyCount"
 				itemcolumn="dayReplied">
+			<cfchartseries
+				type="line"
+				serieslabel="Subs by Day"
+				seriescolor="##990000"
+				query="qryTimeline"
+				valuecolumn="subsCount"
+				itemcolumn="daySub">
 			</cfchartseries>
 		</cfchart>
 		
