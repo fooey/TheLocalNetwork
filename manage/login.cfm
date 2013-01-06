@@ -9,7 +9,7 @@
 <div class="row">
 	<div class="span6 offset3">
 		<cfoutput>
-		<form class="form-horizontal" action="#cgi.script_name#/?login=true" method="POST">
+		<form class="form-horizontal" action="./?login=true" method="POST">
 			<fieldset>
 				<legend>Login to Management Console</legend>
 				<div class="control-group">

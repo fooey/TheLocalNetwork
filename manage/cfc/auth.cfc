@@ -12,13 +12,13 @@ output="false" {
 		local.passwordHash = getPasswordHash(arguments.password);
 		
 		if(arguments.username EQ "sysadmin" AND local.passwordHash EQ variables.adminHash){
-			return new cfc.beans.user(1, 'sysadmin', 'Administrator');
+			return new beans.user(1, 'sysadmin', 'Administrator');
 		}
 		return getDefaultUser();
 	}
 	
-	public cfc.beans.user function getDefaultUser() {
-		return new cfc.beans.user(0, 'Not Logged In', 'Not Logged In');
+	public beans.user function getDefaultUser() {
+		return new beans.user(0, 'Not Logged In', 'Not Logged In');
 	}
 	
 	

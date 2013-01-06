@@ -61,6 +61,8 @@
 		
 		
 		public void function onRequestStart(required string thePage){
+			param name="session.user" default="#application.cfc.auth.getDefaultUser()#";
+			
 			if(structKeyExists(url, "reset")){
 				resetHandler();
 			}
@@ -83,7 +85,6 @@
 		
 		public void function onSessionStart(){
 			session.dateInitialized = now();
-			session.user = application.cfc.auth.getDefaultUser();
 		}
 		
 		
@@ -106,16 +107,29 @@
 		
 		
 		private void function checkAuth(){
-			if(isUserAttemptingAuth()){
-				session.user = application.cfc.auth.getUserByAuth(form.username, form.password);
-				if(session.user.getId()){
-					location(url="#cgi.script_name#", addtoken="no");
+			if(isPageAuthRequired()){
+				if(isUserAttemptingAuth()){
+					session.user = application.cfc.auth.getUserByAuth(form.username, form.password);
+					if(session.user.getId()){
+						location(url="#cgi.script_name#", addtoken="no");
+					}
+				}
+				if(NOT session.user.getId()){
+					include "login.cfm";
+					abort;
 				}
 			}
-			if(NOT session.user.getId()){
-				include "login.cfm";
-				abort;
+		}
+		
+		
+		
+		private boolean function isPageAuthRequired(){
+			local.authRequired = true;
+			if(cgi.script_name contains "/medicareData"){
+				local.authRequired = false;
 			}
+			
+			return local.authRequired;
 		}
 		
 		
@@ -138,9 +152,21 @@
 			application.util.net = new lib.cfc.net();
 			application.util.cfscript = new lib.cfc.cfscript();
 			application.util.string = new lib.cfc.stringUtils();
+			application.util.date = new lib.cfc.date();
+			application.util.csv = new lib.cfc.csv();
+			
+			application.cfc.medicareData = new lib.cfc.3rdparty.medicareData.data(
+				dataPath = expandPath('/data/medicare'),
+				dataSource = "MedicareData"
+			);
+			application.cfc.medicareApi = new lib.cfc.3rdparty.medicareData.api(
+				dataPath = expandPath('/data/medicare'),
+				userAgent = "The-Local-Network.com Update Bot"
+			);
 			
 			application.cfc.auth = new cfc.auth();
 			application.cfc.networkNav = new cfc.networkNav();
+			application.cfc.mail = new cfc.sendMail();
 			
 			application.cfc.sites = new lib.cfc.TheLocalNetwork.sites(datasource = this.datasource);
 			application.cfc.userContent = new lib.cfc.TheLocalNetwork.userContent(datasource = this.datasource);
