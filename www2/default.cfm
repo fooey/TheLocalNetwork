@@ -7,7 +7,8 @@
 
 <div class="hero-unit shadowed">
 	<h1>Hello world!</h1>
-	<p>Welcome to The Local Network! We're dedicated to making your world smaller by making it more personal and more useful.</p>
+	<h2>Welcome to The Local Network!</h2>
+	<p>We're dedicated to making the internet better by making it more personal and more useful.</p>
 	<!---<p><a class="btn primary large" href="#sites">Check out our sites &raquo;</a></p>--->
 </div>
 	
@@ -40,42 +41,63 @@
 <div class="row">
 	<div class="span4">
 		<h3>Local Nursing Homes</h3>
-		<p>Local-Nursing-Homes.com provides you with directories of Nursing Homes complete with both government rating and user ratings and reviews. Information on Home Health Providers is also featured.</p>
-		<p>
-			<a class="btn" href="http://local-nursing-homes.com" target="_blank">View site &raquo;</a>
-			<a class="btn" href="http://v4.local-nursing-homes.com" target="_blank">View beta site &raquo;</a>
-		</p>
+		<p>Local-Nursing-Homes.com provides you with directories of Nursing Homes complete with both government rating and user ratings and reviews.</p>
+		<p><a class="btn" href="http://local-nursing-homes.com" target="_blank">Visit site &raquo;</a></p>
 	</div>
 	<div class="span4">
-		<h3>Local Golf Courses</h3>
-		<p>Reviews and more for courses near you!</p>
-		<p>Local-Golf-Courses.com lists 18,631 golf courses spread across 22 countries, 236 states and provices, and 10,716 cities for you to choose from.</p>
-		<p><a class="btn" href="http://local-golf-courses.com" target="_blank">View site &raquo;</a></p>
+		<h3>Local Home Health Providers</h3>
+		<p>Local-Home-Health.com provides you with directories of Home Health Providers complete with both government rating and user ratings and reviews.</p>
+		<p><a class="btn" href="http://local-home-health.com/" target="_blank">Visit site &raquo;</a></p>
 	</div>
 	<div class="span4">
-		<h3>Govsites.org</h3>
-		<p>Find all your local government's web sites in one place! State, county and city sites are all here.</p>
-		<p><a class="btn" href="http://govsites.org" target="_blank">View site &raquo;</a></p>
+		<h3>Local Medical Supplies</h3>
+		<p>Our directory contains durable and reusable medical equipment such as walkers, wheelchairs, hospital beds and more. We can help you find the medical equipment you need for your home care.</p>
+		<p><a class="btn" href="http://local-medical-supplies.com/" target="_blank">Visit site &raquo;</a></p>
 	</div>
 </div>
 
 <hr>
 
-<div class="row" id="sites2">
+<div class="row">
 	<div class="span4">
-		<h3>Local Businesses For Sale</h3>
-		<p>Bringing you the latest announcements of local businesses for sale in all 50 states.</p>
-		<p><a class="btn" href="http://local-businesses-for-sale.com/" target="_blank">View site &raquo;</a></p>
+		<h3>MedicareContacts.org</h3>
+		<p>Fnd the Medicare contact you need! Browse by
+			<a href='http://medicarecontacts.org/topics' target="_blank">topic</a>,
+			common <a href='http://medicarecontacts.org/questions' target="_blank">questions</a>,
+			or by <a href='http://medicarecontacts.org/orgs' target="_blank">organization</a>.
+		</p>
+		<p><a class="btn" href="http://medicarecontacts.org/" target="_blank">Visit site &raquo;</a></p>
+	</div>
+	<div class="span4">
+		<h3>Govsites.org</h3>
+		<p>Find all your local government's web sites in one place! State, county and city sites are all here.</p>
+		<p><a class="btn" href="http://govsites.org" target="_blank">Visit site &raquo;</a></p>
 	</div>
 	<div class="span4">
 		<h3>Local Rehabilitation Centers</h3>
 		<p>Find rehabilitation centers in your area!</p>
-		<p><a class="btn" href="http://local-rehabilitation-centers.com" target="_blank">View site &raquo;</a></p>
+		<p><a class="btn" href="http://local-rehabilitation-centers.com" target="_blank">Visit site &raquo;</a></p>
+	</div>
+</div>
+
+<hr>
+
+<div class="row">
+	<div class="span4">
+		<h3>Local Golf Courses</h3>
+		<p>Reviews and more for courses near you!</p>
+		<p>Local-Golf-Courses.com lists 18,631 golf courses spread across 22 countries, 236 states and provices, and 10,716 cities for you to choose from.</p>
+		<p><a class="btn" href="http://local-golf-courses.com" target="_blank">Visit site &raquo;</a></p>
+	</div>
+	<div class="span4">
+		<h3>Local Businesses For Sale</h3>
+		<p>Bringing you the latest announcements of local businesses for sale in all 50 states.</p>
+		<p><a class="btn" href="http://local-businesses-for-sale.com/" target="_blank">Visit site &raquo;</a></p>
 	</div>
 	<div class="span4">
 		<h3>Local Private Schools</h3>
 		<p>Find private schools in your area!</p>
-		<p><a class="btn" href="http://local-private-schools.com" target="_blank">View site &raquo;</a></p>
+		<p><a class="btn" href="http://local-private-schools.com" target="_blank">Visit site &raquo;</a></p>
 	</div>
 </div>
 	
