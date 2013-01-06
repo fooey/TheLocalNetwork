@@ -43,6 +43,20 @@
 		</ul>
 	</div>
 </div>
+
+<cfquery name="qryDupes"  dbtype="query">
+	SELECT ipAddress, count(*)  AS num
+	FROM qryUnapprovedReviews
+	GROUP BY ipAddress
+	HAVING COUNT(*) > 1
+</cfquery>
+<cfif qryDupes.recordCount>
+	<ul>
+		<cfoutput query="qryDupes">
+			<li>#qryDupes.num# x #qryDupes.ipAddress#</li>
+		</cfoutput>
+	</ul>
+</cfif>
 		
 <cfoutput query="qryUnapprovedReviews">
 	<cfscript>
@@ -95,8 +109,25 @@
 			& chr(13) & chr(10)
 			& googReview & chr(13) & chr(10)
 			& chr(13) & chr(10)
-			& "#cityTag# #stateTag# ##Review ##ElderCare" & chr(13) & chr(10)
+			& "#cityTag# #qryUnapprovedReviews.stateName# ##Review ##ElderCare" & chr(13) & chr(10)
 			& "http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id#"
+		);
+		
+		local.bloggerTitleTag = application.util.string.titleCase(facilityName);
+		local.bloggerTitleTag = replace(local.bloggerTitleTag, "&", " and ", "ALL");
+		local.bloggerTitleTag = replace(local.bloggerTitleTag, ",", " ", "ALL");
+		local.bloggerTitleTag = rereplace(local.bloggerTitleTag, " {2,}", " ", "ALL");
+		
+		bloggerMsg = (
+			"#application.util.string.titleCase(facilityName)# #rating# Star Review" & chr(13) & chr(10)
+			& chr(13) & chr(10)
+			& "Review, #qryUnapprovedReviews.cityName#, #qryUnapprovedReviews.stateName#, #local.bloggerTitleTag#" & chr(13) & chr(10)
+			& chr(13) & chr(10)
+			& "<p><a href='http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id#'>New #rating# Star User Review of #application.util.string.titleCase(facilityName)# located in #qryUnapprovedReviews.cityName#, #qryUnapprovedReviews.stateName#</a></p>" & chr(13) & chr(10)
+			& chr(13) & chr(10)
+			& "<blockquote style='white-space:pre-wrap'><i>#googReview#</i></blockquote>" & chr(13) & chr(10)
+			& chr(13) & chr(10)
+			& "<p><a href='http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id#'>http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id#</a></p>"
 		);
 	</cfscript>
 	
@@ -116,19 +147,25 @@
 						<div class="span3">
 							<div class="userContent">
 								<h7>Twitter</h7>
-								<textarea rows="4">#twitterMsg#</textarea>
+								<textarea rows="6">#twitterMsg#</textarea>
 							</div>
 						</div>
 						<div class="span3">
 							<div class="userContent">
 								<h7>Facebook</h7>
-								<textarea rows="4">#fbMsg#</textarea>
+								<textarea rows="6">#fbMsg#</textarea>
 							</div>
 						</div>
-						<div class="span3">
+						<!---<div class="span3">
 							<div class="userContent">
 								<h7>Google+</h7>
 								<textarea rows="4">#gPlusMsg#</textarea>
+							</div>
+						</div>--->
+						<div class="span3">
+							<div class="userContent">
+								<h7>Blogger</h7>
+								<textarea rows="6">#bloggerMsg#</textarea>
 							</div>
 						</div>
 					</div>
@@ -146,6 +183,14 @@
 						<tr>
 							<td>ReviewId</td>
 							<td>#qryUnapprovedReviews.id#</td>
+						</tr>
+						<tr>
+							<td>ipAddress</td>
+							<td>#qryUnapprovedReviews.ipAddress#</td>
+						</tr>
+						<tr>
+							<td>Reviews / Ratings</td>
+							<td>#numberFormat(qryUnapprovedReviews.reviewCount)# / #numberFormat(qryUnapprovedReviews.ratingCount)#</td>
 						</tr>
 						<tr>
 							<td>User Rating</td>
@@ -173,9 +218,9 @@
 						</div>
 					</div>
 					
-					<div class="control-group">
+					<!---<div class="control-group">
 						<div align="center"><span class="btn publicize" data-toggle="button">Publicize?</span></div>
-					</div>
+					</div>--->
 					
 				</div>
 			</div>
