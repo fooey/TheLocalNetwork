@@ -1,3 +1,15 @@
+<cfscript>
+	include "/layout/template-open.cfm";
+</cfscript>
+
+<div class="row">
+	<div class="span3">
+		<cfinclude template="layout/sidebar.cfm" />
+	</div>
+	<div class="span9">
+		<h3 class="page-header">Cache Clearer</h3>
+
+
 <!---
 LICENSE 
 Copyright 2008-2010 Raymond Camden
@@ -26,24 +38,17 @@ Please see readme.txt for latest updates.
 
 <cfparam name="cookie.lastpaths" default="">
 
-<cfscript>
-	include "/layout/template-open.cfm";
-</cfscript>
 
 <cfparam name="form.cfadminPassword" default="">
 <cfparam name="form.cachefile" default="">
 <cfparam name="form.recursedir" type="boolean" default="yes">
 
 <cfscript>
-	if(CGI.REQUEST_METHOD EQ "POST"){
+	if(len(trim(form.cachefile))){
 		adminObj = createObject("component","cfide.adminapi.administrator");
 		adminObj.login(form.cfadminPassword);
 	}
 </cfscript>
-
-<h2 class="pageHeader">
-Cache Clearer
-</h2>
 
 Enter either a single directory or a list of files to be removed from the trusted template cache.  The 'Recurse directory' option is only applied if a single directory is passed.
 <br /><br />
@@ -76,20 +81,8 @@ Enter either a single directory or a list of files to be removed from the truste
 </form>
 </cfoutput>
 
-<!---<cfinvoke component="cfide.adminapi.runtime" method="getCacheProperty" propertyName="TrustedCache" returnVariable="TrustedCache">
-<cfif TrustedCache EQ "NO">
-	<script type="text/javascript">
-	formElements = cacheForm.elements;
 
-	for( i=0; i < formElements.length; i++)
-	{
-		formElements[i].disabled = 'disabled';
-	}
 
-	cacheForm.cachefile.value='Trusted Cache is OFF.';
-	</script>
-</cfif> 
---->
 <cfif len(trim(form.cachefile))>
 	<cfset form.cachefile = trim(form.cachefile)>
 	
@@ -160,6 +153,10 @@ Enter either a single directory or a list of files to be removed from the truste
 <!---<cfinclude template="../footer.cfm">--->
 
 
+		
+		
+	</div>
+</div>
 <cfscript>
 	include "/layout/template-close.cfm";
 </cfscript>
