@@ -23,9 +23,7 @@
 	
 	param name="url.siteId" type="numeric" default="1";  
 	qryUnapprovedReviewsSummary = application.cfc.userContent.getUnapprovedReviewsSummary();
-	qryUnapprovedReviews = application.cfc.userContent.getUnapprovedReviews(siteId = url.siteId);
-	
-	
+	qryUnapprovedReviews = application.cfc.userContent.getUnapprovedReviews(siteId = url.siteId, num = 200);
 	
 	
 	include "/layout/template-open.cfm";
@@ -49,6 +47,12 @@
 	FROM qryUnapprovedReviews
 	GROUP BY ipAddress
 	HAVING COUNT(*) > 1
+	
+	UNION ALL
+	SELECT ipAddress, 999  AS num
+	FROM qryUnapprovedReviews
+	WHERE ipAddress LIKE '12.157.18[89].%'
+		OR ipAddress LIKE '12.157.19[01].%'
 </cfquery>
 <cfif qryDupes.recordCount>
 	<ul>
@@ -121,7 +125,7 @@
 		bloggerMsg = (
 			"#application.util.string.titleCase(facilityName)# #rating# Star Review" & chr(13) & chr(10)
 			& chr(13) & chr(10)
-			& "Review, #qryUnapprovedReviews.cityName#, #qryUnapprovedReviews.stateName#, #local.bloggerTitleTag#" & chr(13) & chr(10)
+			& "Review, #qryUnapprovedReviews.stateName#" & chr(13) & chr(10)
 			& chr(13) & chr(10)
 			& "<p><a href='http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id#'>New #rating# Star User Review of #application.util.string.titleCase(facilityName)# located in #qryUnapprovedReviews.cityName#, #qryUnapprovedReviews.stateName#</a></p>" & chr(13) & chr(10)
 			& chr(13) & chr(10)
