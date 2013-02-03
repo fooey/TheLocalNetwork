@@ -124,6 +124,11 @@
 					<li><a href="/legal/TermsAndConditions.cfm">Terms and Conditions of Use</a></li>
 					<li><a href="/legal/PrivacyPolicy.cfm">Privacy Policy</a></li>
 					<li><a href="/legal/ContentGuidelines.cfm">Content Policies and Guidelines</a></li>
+					
+					<li class="divider"><hr></li>
+					
+					<li class="nav-header"><h4>CF Administrator</h4></li>
+					<li><a href="cacheClearer.cfm">Cache Clearer</a></li>
 				</ul>
 			</div>
 		</div>

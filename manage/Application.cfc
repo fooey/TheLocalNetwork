@@ -61,11 +61,11 @@
 		
 		
 		public void function onRequestStart(required string thePage){
-			param name="session.user" default="#application.cfc.auth.getDefaultUser()#";
 			
 			if(structKeyExists(url, "reset")){
 				resetHandler();
 			}
+			param name="session.user" default="#application.cfc.auth.getDefaultUser()#";
 			
 			request.remoteAddr = application.util.net.getRemoteAddr();
 			if(application.isDev){
