@@ -190,7 +190,7 @@
 						</tr>
 						<tr>
 							<td>ipAddress</td>
-							<td>#qryUnapprovedReviews.ipAddress#</td>
+							<td><a href="http://domaintools.com/#qryUnapprovedReviews.ipAddress#" target="_blank">#qryUnapprovedReviews.ipAddress#</a></td>
 						</tr>
 						<tr>
 							<td>Reviews / Ratings</td>
