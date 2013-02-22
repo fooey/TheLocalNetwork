@@ -26,6 +26,16 @@
 	qryUnapprovedReviews = application.cfc.userContent.getUnapprovedReviews(siteId = url.siteId, num = 200);
 	
 	
+	local.dates = {};
+	for(local.r = 1; local.r LTE qryUnapprovedReviews.recordCount; local.r++){
+		local.date = dateFormat(qryUnapprovedReviews.dateRated[local.r], "short");
+		
+		param name="local.dates['#local.date#']" default="0";
+		local.dates[local.date]++;
+	}
+	dateList = listSort(structKeyList(local.dates), "textnocase");
+	
+	
 	include "/layout/template-open.cfm";
 </cfscript>
 
@@ -42,6 +52,7 @@
 	</div>
 </div>
 
+
 <cfquery name="qryDupes"  dbtype="query">
 	SELECT ipAddress, count(*)  AS num
 	FROM qryUnapprovedReviews
@@ -54,13 +65,27 @@
 	WHERE ipAddress LIKE '12.157.18[89].%'
 		OR ipAddress LIKE '12.157.19[01].%'
 </cfquery>
-<cfif qryDupes.recordCount>
-	<ul>
-		<cfoutput query="qryDupes">
-			<li>#qryDupes.num# x #qryDupes.ipAddress#</li>
-		</cfoutput>
-	</ul>
-</cfif>
+
+<cfoutput>
+<div class="row-fluid">
+	<div class="span6">
+		<ul>
+			<cfloop list="#dateList#" index="local.date">
+				<li>#local.dates[local.date]# - #dateFormat(local.date, 'DDD dd/yy')#</li>
+			</cfloop>
+		</ul>
+	</div>
+	<div class="span6">
+		<cfif qryDupes.recordCount>
+		<ul>
+			<cfloop query="qryDupes">
+				<li>#qryDupes.num# x #qryDupes.ipAddress#</li>
+			</cfloop>
+		</ul>
+		</cfif>
+	</div>
+</div>
+</cfoutput>
 		
 <cfoutput query="qryUnapprovedReviews">
 	<cfscript>
@@ -192,6 +217,12 @@
 							<td>ipAddress</td>
 							<td><a href="http://domaintools.com/#qryUnapprovedReviews.ipAddress#" target="_blank">#qryUnapprovedReviews.ipAddress#</a></td>
 						</tr>
+						<cfif isNumeric(writeDuration)>
+							<tr>
+								<td>Write Duration</td>
+								<td>#writeDuration#</td>
+							</tr>
+						</cfif>
 						<tr>
 							<td>Reviews / Ratings</td>
 							<td>#numberFormat(qryUnapprovedReviews.reviewCount)# / #numberFormat(qryUnapprovedReviews.ratingCount)#</td>
