@@ -1,4 +1,4 @@
-<cfsetting requesttimeout="#60*10#" />
+<cfsetting requesttimeout="#60*30#" />
 <cflock timeout="1" name="medicareDownloadView" throwontimeout="false"> 
 <cfscript>
 	
@@ -10,7 +10,7 @@
 		local.filePath = application.cfc.medicareData.getFilePath(fileId);
 		local.tableName = application.cfc.medicareData.getTableName(fileId);
 		
-		writeOutput("Downloading #qryView.name# (#qryView.id#)<br>");
+		writeOutput("Downloading #qryView.name# (#qryView.id#) to #local.filePath#<br>");
 		/*
 		*/
 		fileSize = application.cfc.medicareApi.downloadById(fileId);
@@ -62,4 +62,4 @@
 <hr>
 done...
 
-<!---<meta http-equiv="refresh" content="3">--->
+<meta http-equiv="refresh" content="3">

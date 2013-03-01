@@ -12,7 +12,7 @@
 		,"helpful contacts"
 		,"websites"
 	];
-	//local.tags = ["supplier"];
+	//local.tags = [];
 	local.specificViews = [
 		"m5eg-upu5"		// Home Health Care - Zip Codes
 		,"uy9i-rbhv"	// CASPER / ASPEN Contacts

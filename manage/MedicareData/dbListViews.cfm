@@ -15,42 +15,61 @@
 <body>
 
 <cfscript>
-	qryViews = application.cfc.medicareData.getViews();
+	param name="url.tag" default=""; 
+	qryTags = application.cfc.medicareData.getTags();
+	qryViews = application.cfc.medicareData.getViews(tag=url.tag);
 </cfscript>
 
-<div class="container"><div class="row12">
-
-	<table class="table">
-		<thead>
-			<tr>
-				<td>id</td>
-				<td>name</td>
-				<td>pubDate</td>
-				<td>modified</td>
-				<td>updated</td>
-				<td>updateId</td>
-				<td>authorId</td>
-				<td>ownerId</td>
-			</tr>
-		</thead>
-		<tbody>
-		<cfoutput query="qryViews">
-			<tr title="#jsStringFormat(description)#">
-				<td><a href="#application.cfc.medicareApi.getViewUrl(id)#">#id#</a></td>
-				<td>#name#</td>
-				<td>#dateFormat(application.util.date.epochToLocal(publicationDate), 'mm/dd/yy')#</td>
-				<td>#dateFormat(application.util.date.epochToLocal(rowsUpdatedAt), 'mm/dd/yy')#</td>
-				<td>#dateFormat(application.util.date.epochToLocal(viewLastModified), 'mm/dd/yy')#</td>
-				<td><a href="#application.cfc.medicareApi.getUserUrl(rowsUpdatedBy)#">#rowsUpdatedBy#</a></td>
-				<td><a href="#application.cfc.medicareApi.getUserUrl(authorId)#">#authorId#</a></td>
-				<td><a href="#application.cfc.medicareApi.getUserUrl(ownerId)#">#ownerId#</a></td>
-			</tr>
+<div class="container">
+	<div class="row"><div class="span12">
+		<table class="table">
+			<thead>
+				<tr>
+					<td>id</td>
+					<td>name</td>
+					<td>pubDate</td>
+					<td>modified</td>
+					<td>updated</td>
+					<td>updateId</td>
+					<td>authorId</td>
+					<td>ownerId</td>
+				</tr>
+			</thead>
+			<tbody>
+			<cfoutput query="qryViews">
+				<tr title="#jsStringFormat(description)#">
+					<td><a href="#application.cfc.medicareApi.getViewUrl(id)#">#id#</a></td>
+					<td>#name#</td>
+					<td>#dateFormat(application.util.date.epochToLocal(publicationDate), 'mm/dd/yy')#</td>
+					<td>#dateFormat(application.util.date.epochToLocal(rowsUpdatedAt), 'mm/dd/yy')#</td>
+					<td>#dateFormat(application.util.date.epochToLocal(viewLastModified), 'mm/dd/yy')#</td>
+					<td><a href="#application.cfc.medicareApi.getUserUrl(rowsUpdatedBy)#">#rowsUpdatedBy#</a></td>
+					<td><a href="#application.cfc.medicareApi.getUserUrl(authorId)#">#authorId#</a></td>
+					<td><a href="#application.cfc.medicareApi.getUserUrl(ownerId)#">#ownerId#</a></td>
+				</tr>
+			</cfoutput>
+			</tbody>
+			<tfoot>
+				<tr>
+					<cfoutput><td colspan="8"><small><em>#qryViews.RecordCount# Results</em></small></td></cfoutput>
+				</tr>
+			</tfoot>
+		</table>
+	</div></div>
+	
+	
+	
+	<div class="row"><div class="span12">
+		<ul class="nav nav-pills">
+			<li><a href="?tag=">All</a></li>
+			<li><a href="?tag=NULL">Untagged</a></li>
+		<cfoutput query="qryTags">
+			<li><a href="?tag=#qryTags.tag#">#qryTags.tag#</a></li>
 		</cfoutput>
-		</tbody>
-	</table>
+		</ul>
+	</div></div>
 
-
-</div></div>
+</div>
 </body>
 </html>
 
