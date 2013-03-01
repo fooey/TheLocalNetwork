@@ -74,9 +74,9 @@
 		<p><a class="btn" href="http://medicarecontacts.org/" target="_blank">Visit site &raquo;</a></p>
 	</div>
 	<div class="span4">
-		<h3>Govsites.org</h3>
-		<p>Find all your local government's web sites in one place! State, county and city sites are all here.</p>
-		<p><a class="btn" href="http://govsites.org" target="_blank">Visit site &raquo;</a></p>
+		<h3>EduListing.com</h3>
+		<p>Your friendly assistant with the latest information on colleges, universities, and technical / vocational institutions.</p>
+		<p><a class="btn" href="http://edulisting.com" target="_blank">Visit site &raquo;</a></p>
 	</div>
 </div>
 
@@ -105,6 +105,11 @@
 
 <div class="row">
 	<div class="span4">
+		<h3>Govsites.org</h3>
+		<p>Find all your local government's web sites in one place! State, county and city sites are all here.</p>
+		<p><a class="btn" href="http://govsites.org" target="_blank">Visit site &raquo;</a></p>
+	</div>
+	<div class="span4">
 		<h3>Local Rehabilitation Centers</h3>
 		<p>Find rehabilitation centers in your area!</p>
 		<p><a class="btn" href="http://local-rehabilitation-centers.com" target="_blank">Visit site &raquo;</a></p>
@@ -114,6 +119,11 @@
 		<p>Find private schools in your area!</p>
 		<p><a class="btn" href="http://local-private-schools.com" target="_blank">Visit site &raquo;</a></p>
 	</div>
+</div>
+
+<hr>
+
+<div class="row">
 	<div class="span4">
 		<h3>NoSrc.net</h3>
 		<p>Sometimes you just need a placeholder image</p>
