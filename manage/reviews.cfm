@@ -158,6 +158,9 @@
 			& chr(13) & chr(10)
 			& "<p><a href='http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id#'>http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id#</a></p>"
 		);
+		
+		
+		reviewAge = dateDiff('h', dateRated, now());
 	</cfscript>
 	
 	<form class="form-inline row userContentSection" action="#cgi.script_name#?rId=#id#" method="post">
@@ -201,7 +204,9 @@
 					
 				</div>
 				<div class="span3">
-					<h4 class="page-subheader">Submitted: #dateFormat(dateRated, 'ddd, mmm dd')#</h4><!--- #type# --->
+					<h4 class="page-subheader<cfif reviewAge LT 36> alert alert-error<cfelseif reviewAge LT 48> alert alert-warning</cfif>">
+						Submitted: #dateFormat(dateRated, 'ddd, mmm dd')#
+					</h4>
 					<table width='100%'>
 						<col>
 						<col width="#5*18#">
@@ -218,9 +223,9 @@
 							<td><a href="http://domaintools.com/#qryUnapprovedReviews.ipAddress#" target="_blank">#qryUnapprovedReviews.ipAddress#</a></td>
 						</tr>
 						<cfif isNumeric(writeDuration)>
-							<tr>
+							<tr class="<cfif writeDuration LT 30 OR writeDuration GT 60*20>alert alert-error</cfif>">
 								<td>Write Duration</td>
-								<td>#writeDuration#</td>
+								<td>#numberFormat(writeDuration/60)#m (#writeDuration#s)</td>
 							</tr>
 						</cfif>
 						<tr>
