@@ -120,10 +120,12 @@
 			uid = qryUnapprovedReviews.uid,
 			facilityType = qryUnapprovedReviews.type
 		);
+		reviewAge = dateDiff('h', dateRated, now());
 		
 		htmlEscapedReview = htmlEditFormat(review);
 		reviewHtml = listChangeDelims(trim(htmlEscapedReview), "</p><p>", chr(10));
 		
+		/*
 		stateTag = "##" & REReplaceNoCase(qryUnapprovedReviews.stateName, "[^a-z]", "", "ALL");
 		cityTag = "##" & REReplaceNoCase(qryUnapprovedReviews.cityName, "[^a-z]", "", "ALL");
 		
@@ -184,9 +186,8 @@
 			& chr(13) & chr(10)
 			& "<p><a href='http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id#'>http://local-nursing-homes.com/?rid=#qryUnapprovedReviews.id#</a></p>"
 		);
+		*/
 		
-		
-		reviewAge = dateDiff('h', dateRated, now());
 	</cfscript>
 	
 	<form class="form-inline row userContentSection" action="#cgi.script_name#?rId=#id#" method="post">
@@ -199,9 +200,10 @@
 					<div class="userContent">
 						<p>#reviewHtml#</p>
 					</div>
-					<hr>
 					
-					<div class="row">
+					<!---
+						<hr>
+						<div class="row">
 						<div class="span3">
 							<div class="userContent">
 								<h7>Twitter</h7>
@@ -227,6 +229,7 @@
 							</div>
 						</div>
 					</div>
+					--->
 					
 				</div>
 				<div class="span3">
