@@ -53,33 +53,59 @@
 </div>
 
 
+<cfquery name="qryDeleted">
+	SELECT ipAddress = dbo.convertIpFromInt(ipAddress), num = count(*)
+	FROM RatingsDeleted
+	GROUP BY ipAddress
+</cfquery>
 <cfquery name="qryDupes"  dbtype="query">
 	SELECT ipAddress, count(*)  AS num
 	FROM qryUnapprovedReviews
 	GROUP BY ipAddress
 	HAVING COUNT(*) > 1
-	
+	<!--- 
 	UNION ALL
 	SELECT ipAddress, 999  AS num
 	FROM qryUnapprovedReviews
 	WHERE ipAddress LIKE '12.157.18[89].%'
 		OR ipAddress LIKE '12.157.19[01].%'
+	 --->
+</cfquery>
+<cfquery name="qryFlagged" result="qryFlaggedResult" dbtype="query">
+	SELECT qryDeleted.ipAddress, qryDeleted.num
+	FROM qryUnapprovedReviews,qryDeleted
+	WHERE qryUnapprovedReviews.ipAddress = qryDeleted.ipAddress
+</cfquery>
+
+<cfquery name="qryUnapprovedReviews"  dbtype="query">
+	SELECT *
+	FROM qryUnapprovedReviews
+	ORDER BY dateRated
 </cfquery>
 
 <cfoutput>
 <div class="row-fluid">
-	<div class="span6">
+	<div class="span4">
 		<ul>
 			<cfloop list="#dateList#" index="local.date">
 				<li>#local.dates[local.date]# - #dateFormat(local.date, 'DDD dd/yy')#</li>
 			</cfloop>
 		</ul>
 	</div>
-	<div class="span6">
+	<div class="span4">
 		<cfif qryDupes.recordCount>
 		<ul>
 			<cfloop query="qryDupes">
 				<li>#qryDupes.num# x #qryDupes.ipAddress#</li>
+			</cfloop>
+		</ul>
+		</cfif>
+	</div>
+	<div class="span4">
+		<cfif qryFlagged.recordCount>
+		<ul>
+			<cfloop query="qryFlagged">
+				<li>#qryFlagged.num# x #qryFlagged.ipAddress#</li>
 			</cfloop>
 		</ul>
 		</cfif>
