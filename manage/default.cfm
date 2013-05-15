@@ -133,8 +133,123 @@
 			</tbody>
 		</table>
 		</cfoutput>
+		
+		
+		
+		<div id="chart" class="flot-chart"></div>
+		<style>
+			.flot-chart{
+				width: 700px;
+				height: 400px;
+			}
+		</style>
+		
+		
+		
+		<cfscript>
+			local.epochRoot = DateConvert("utc2Local", createDate(1970,1,1));
+			function toEpoch(datetime){
+				return dateDiff("s", local.epochRoot, arguments.datetime) * 1000;
+			}
 			
-		<cfchart chartwidth="700" chartheight="460" showmarkers="0" showlegend="true" showXgridlines="true" showYgridlines="true" format="png" >
+			
+			local.data = {
+				'ratingCounts' = []
+				, 'reviewCounts' = []
+				, 'replyCounts' = []
+				, 'subsCounts' = []
+			};
+			
+			for(local.r = 1; local.r LTE qryTimeline.recordCount; local.r++){
+				local.dayRated = toEpoch(qryTimeline.dayRated[local.r]);
+				local.dayReplied = toEpoch(qryTimeline.dayReplied[local.r]);
+				local.daySub = toEpoch(qryTimeline.daySub[local.r]);
+				
+				local.userRatingCount = qryTimeline.userRatingCount[local.r];
+				local.userReviewCount = qryTimeline.userReviewCount[local.r];
+				local.replyCount = qryTimeline.replyCount[local.r];
+				local.subsCount = qryTimeline.subsCount[local.r];
+				
+				arrayAppend(local.data.ratingCounts, [local.dayRated, local.userRatingCount]);
+				arrayAppend(local.data.reviewCounts, [local.dayRated, local.userReviewCount]);
+				arrayAppend(local.data.replyCounts, [local.dayReplied, local.replyCount]);
+				arrayAppend(local.data.subsCounts, [local.daySub, local.subsCount]);
+			}        	        
+        </cfscript>
+		<script>
+			head("jquery", function() {
+				head.js(
+					{flot: "/static/js/flot/jquery.flot.min.js"}
+					, {flotTime: "/static/js/flot/jquery.flot.time.min.js"}
+				);
+			});
+			
+			head("flotTime", function() {
+				
+				var chartData = <cfoutput>#serializeJson(local.data)#</cfoutput>;
+ 
+				$.plot(
+					"#chart"
+					, [
+						{ data: chartData.ratingCounts, label: 'Ratings' }
+						, { data: chartData.reviewCounts, label: 'Reviews' }
+						, { data: chartData.replyCounts, label: 'Replies' }
+						, { data: chartData.subsCounts, label: 'Subscriptions' }
+					]
+					, {
+						xaxis: {
+							mode: "time"
+							, timeformat: "%m/%d"
+						}
+						, grid: {
+							hoverable: true,
+							clickable: true
+						}
+					}
+				);
+				
+				
+				function showTooltip(x, y, contents) {
+					$("<div id='tooltip'>" + contents + "</div>").css({
+						position: "absolute",
+						display: "none",
+						top: y - 20,
+						left: x + 5,
+						border: "1px solid #fdd",
+						padding: "2px",
+						"background-color": "#fee",
+						opacity: 0.80
+					}).appendTo("body").fadeIn(200);
+				}
+				
+				var previousPoint = null;
+				$("#chart").bind("plothover", function (event, pos, item) {
+					if (item) {
+						if (previousPoint != item.dataIndex) {
+				
+							previousPoint = item.dataIndex;
+				
+							$("#tooltip").remove();
+							//var x = item.datapoint[0].toFixed(2), y = item.datapoint[1].toFixed(2);
+							var x = $.plot.formatDate(new Date(item.datapoint[0]), "%m/%d")
+								, y =  item.datapoint[1];
+				
+							showTooltip(
+								item.pageX
+								, item.pageY
+								, (x + ': ' + y +  ' ' + item.series.label)
+							);
+						}
+					} else {
+						$("#tooltip").remove();
+						previousPoint = null;            
+					}
+				});
+			 
+			});
+		</script>
+			
+		<!---<cfchart chartwidth="700" chartheight="460" showmarkers="0" showlegend="true" showXgridlines="true" showYgridlines="true" format="png" >
 			<cfchartseries
 				type="line"
 				serieslabel="Ratings by Day"
@@ -165,7 +280,7 @@
 				valuecolumn="subsCount"
 				itemcolumn="daySub">
 			</cfchartseries>
-		</cfchart>
+		</cfchart>--->
 		
 		
 	</div>
