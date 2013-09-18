@@ -125,7 +125,28 @@
 				cacheRemove(local.ixCacheId);
 			}
 		}
-		private void function redirectsHandler(){
+		private void function redirectsHandler(){			
+			if (
+				CGI.SERVER_NAME NEQ application.canon.domain
+				AND NOT CGI.SERVER_NAME CONTAINS "dev"
+			){
+				local.scriptPath = application.cfc.net.getScriptNameWithQuery();
+				if(local.scriptPath EQ "/default.cfm"){
+					local.scriptPath = "/";
+				}
+				local.redirectTo = "http://#lcase(application.canon.domain)#" & local.scriptPath;
+			}
+			
+			
+			
+			if(structKeyExists(local, "redirectTo")){
+				location(
+					url = local.redirectTo
+					addtoken = false
+					statuscode = 301
+				);
+			}
+			
 		}
 		
 		
