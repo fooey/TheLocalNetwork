@@ -11,6 +11,7 @@
 		,"dfc"
 		,"helpful contacts"
 		,"websites"
+		,"general information"
 	];
 	//local.tags = [];
 	local.specificViews = [
