@@ -8,6 +8,14 @@
 			usessl = "true",
 			usetls = "false"
 		};
+		variables.mailAuth = {
+			server = "email-smtp.us-east-1.amazonaws.com",
+			username = "AKIAJL44YTZUFPZI7O6Q",
+			password = "AhTLX4Eux2pvd6MbAac61HQcIXLvOKi8CIgOGjpAnBk7",
+			port = "465",
+			usessl = "true",
+			usetls = "false"
+		};
 		
 		
 		
