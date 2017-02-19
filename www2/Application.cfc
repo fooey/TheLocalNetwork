@@ -10,7 +10,7 @@
 		this.setDomainCookies = "no";
 		this.ScriptProtect = "no";
 		//this.datasource = "LocalLN";
-			
+
 		this.smtpserversettings = {
 			server = "email-smtp.us-east-1.amazonaws.com",
 			username = "AKIAJL44YTZUFPZI7O6Q",
@@ -35,62 +35,62 @@
 		/* define a list of custom tag paths. */
 		//this.customtagpaths = "";
 	</cfscript>
-	 
 
 
 
-	
+
+
 	<!--- Application.cfc framework --->
-	<cfscript>		
+	<cfscript>
 		public boolean function onApplicationStart(){
 			request.isDev = false;
 			application.canon.domain = "the-local-network.com";
-			
+
 			initComponents();
 			generateCachedQueries();
-	
+
 			return true;
 		}
-		
-		
-		
+
+
+
 		public void function onRequestStart(required string thePage){
 			if(structKeyExists(url, "reset")){
 				resetHandler();
 			}
-			
+
 			request.remoteAddr = application.cfc.net.getRemoteAddr();
-			
+
 			redirectsHandler();
 			devModeHandler();
 		}
-		
-		
-		
+
+
+
 		public void function onRequestEnd(required string thePage){
 			if(structKeyExists(url, "isDev")){
 				application.isDev = false;
 			}
 		}
 	</cfscript>
-	 
+
 
 
 
 
 	<!--- Application.cfc utility functions --->
 	<cfscript>
-		
+
 		private void function initComponents(){
 			application.cfc.net = new lib.cfc.net();
 		}
-		
-		
-		
+
+
+
 		private void function generateCachedQueries(){
-		} 
-		
-	
+		}
+
+
 		private void function resetHandler(){
 			if (url.reset EQ "app"){
 				resetApp();
@@ -101,31 +101,31 @@
 			else if (url.reset EQ "cache"){
 				resetCache();
 			}
-			
+
 			location(url="/", addtoken="no");
 		}
-		
-		
+
+
 		private void function resetApp(){
 			applicationStop();
 		}
-		
-		
+
+
 		private void function resetClient(){
 			local.clientVars = structKeyArray(client);
 			for(local.ixCVar IN local.clientVars){
 				deleteClientVariable(local.ixCVar);
 			}
 		}
-		
-		
+
+
 		private void function resetCache(){
 			local.cacheIdArray = cacheGetAllIds();
 			for(local.ixCacheId IN local.cacheIdArray){
 				cacheRemove(local.ixCacheId);
 			}
 		}
-		private void function redirectsHandler(){			
+		private void function redirectsHandler(){
 			if (
 				CGI.SERVER_NAME NEQ application.canon.domain
 				AND NOT CGI.SERVER_NAME CONTAINS "dev"
@@ -136,26 +136,26 @@
 				}
 				local.redirectTo = "http://#lcase(application.canon.domain)#" & local.scriptPath;
 			}
-			
-			
-			
+
+
+
 			if(structKeyExists(local, "redirectTo")){
 				location(
-					url = local.redirectTo
-					addtoken = false
+					url = local.redirectTo,
+					addtoken = false,
 					statuscode = 301
 				);
 			}
-			
+
 		}
-		
-		
+
+
 		private void function devModeHandler(){
 			if(request.remoteAddr EQ "127.0.0.1"){
 				initComponents();
 				request.isDev = true;
 			}
-			
+
 			if(structKeyExists(url, "noDev")){
 				request.isDev = false;
 			}
@@ -164,9 +164,9 @@
 			}
 		}
 	</cfscript>
-	 
-	 
-	 
+
+
+
 
 
 	<!--- Runs before request as well, after onRequestStart --->
@@ -218,9 +218,9 @@
 		<!--- Return out. --->
 		<cfreturn />
 	</cffunction>--->
-	
-	
-	
+
+
+
 
 	<!--- Fired when user requests a CFM that doesn't exist. --->
 	<!---<cffunction name="onMissingTemplate" returnType="boolean" output="false">
