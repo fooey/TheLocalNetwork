@@ -129,6 +129,7 @@
 			if (
 				CGI.SERVER_NAME NEQ application.canon.domain
 				AND NOT CGI.SERVER_NAME CONTAINS "dev"
+				AND NOT CGI.SERVER_NAME CONTAINS "hostek"
 			){
 				local.scriptPath = application.cfc.net.getScriptNameWithQuery();
 				if(local.scriptPath EQ "/default.cfm"){
