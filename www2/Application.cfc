@@ -9,16 +9,6 @@
 		this.setClientCookies = "no";
 		this.setDomainCookies = "no";
 		this.ScriptProtect = "no";
-		//this.datasource = "LocalLN";
-
-		this.smtpserversettings = {
-			server = "email-smtp.us-east-1.amazonaws.com",
-			username = "AKIAJL44YTZUFPZI7O6Q",
-			password = "AhTLX4Eux2pvd6MbAac61HQcIXLvOKi8CIgOGjpAnBk7",
-			port = "465",
-			usessl = "true",
-			usetls = "false"
-		};
 
 		this.sessionmanagement = "no";
 		//this.sessiontimeout = createTimeSpan(0,0,0,1);
