@@ -10,15 +10,6 @@
 		this.setDomainCookies = "true";
 		this.ScriptProtect = "no";
 		this.datasource = "TheLocalNetwork";
-			
-		this.smtpserversettings = {
-			server = "email-smtp.us-east-1.amazonaws.com",
-			username = "AKIAJL44YTZUFPZI7O6Q",
-			password = "AhTLX4Eux2pvd6MbAac61HQcIXLvOKi8CIgOGjpAnBk7",
-			port = "465",
-			usessl = "true",
-			usetls = "false"
-		};
 
 		this.sessionmanagement = "true";
 		this.sessiontimeout = createTimeSpan(3,0,15,0);
@@ -36,60 +27,60 @@
 		/* define a list of custom tag paths. */
 		//this.customtagpaths = "";
 	</cfscript>
-	 
 
 
 
-	
+
+
 	<!--- Application.cfc framework --->
-	<cfscript>		
+	<cfscript>
 		public boolean function onApplicationStart(){
 			application.paths.rel.root = '/manage';
-			
+
 			application.host.machineName = CreateObject("java", "java.net.InetAddress").getLocalHost().getHostName();
 			application.host.addr = CreateObject("java", "java.net.InetAddress").getLocalHost().getHostAddress();
-			
+
 			application.isDev = (application.host.machineName EQ "DEV" OR application.host.machineName EQ "Jason-PC");
 			application.isProd = (NOT application.isDev);
-			
+
 			initCacheSettings();
 			initComponents();
-	
+
 			return true;
 		}
-		
-		
-		
+
+
+
 		public void function onRequestStart(required string thePage){
-			
+
 			if(structKeyExists(url, "reset")){
 				resetHandler();
 			}
 			param name="session.user" default="#application.cfc.auth.getDefaultUser()#";
-			
+
 			request.remoteAddr = application.util.net.getRemoteAddr();
 			if(application.isDev){
 				initCacheSettings();
 				initComponents();
 			}
-			
+
 			noCacheHeaders();
 			checkAuth();
 		}
-		
-		
-		
+
+
+
 		public void function onRequestEnd(required string thePage){}
-		
-		
-		
+
+
+
 		public void function onSessionStart(){
 			session.dateInitialized = now();
 		}
-		
-		
+
+
 	</cfscript>
-	 
+
 
 
 
@@ -100,12 +91,12 @@
 			application.util.cfscript.header(name="Pragma", value="no-cache");
 			application.util.cfscript.header(name="Cache-Control", value="no-cache");
 			application.util.cfscript.header(name="Expires", value="0");
-			
+
 			application.util.cfscript.htmlHead(text='#chr(9)#<meta http-equiv="Pragma" content="no-cache"><meta http-equiv="Cache-Control" content="no-cache"><meta http-equiv="Expires" content="0">#chr(10)#');
 		}
-		
-		
-		
+
+
+
 		private void function checkAuth(){
 			if(isPageAuthRequired()){
 				if(isUserAttemptingAuth()){
@@ -120,41 +111,41 @@
 				}
 			}
 		}
-		
-		
-		
+
+
+
 		private boolean function isPageAuthRequired(){
 			local.authRequired = true;
 			if(cgi.script_name contains "/medicareData"){
 				local.authRequired = false;
 			}
-			
+
 			return local.authRequired;
 		}
-		
-		
-		
+
+
+
 		private boolean function isUserAttemptingAuth(){
 			return (
 				structKeyExists(url, "login")
-				
+
 				AND structKeyExists(form, "username")
 				AND len(trim(form.username))
-				
+
 				AND structKeyExists(form, "password")
 				AND len(trim(form.password))
 			);
 		}
-		
-		
-		
+
+
+
 		private void function initComponents(){
 			application.util.net = new lib.cfc.net();
 			application.util.cfscript = new lib.cfc.cfscript();
 			application.util.string = new lib.cfc.stringUtils();
 			application.util.date = new lib.cfc.date();
 			application.util.csv = new lib.cfc.csv();
-			
+
 			application.cfc.medicareData = new lib.cfc.3rdparty.medicareData.data(
 				dataPath = expandPath('/data/medicare'),
 				dataSource = "MedicareData"
@@ -163,34 +154,34 @@
 				dataPath = expandPath('/data/medicare'),
 				userAgent = "The-Local-Network.com Update Bot"
 			);
-			
+
 			application.cfc.auth = new cfc.auth();
 			application.cfc.networkNav = new cfc.networkNav();
 			application.cfc.mail = new cfc.sendMail();
-			
+
 			application.cfc.sites = new lib.cfc.TheLocalNetwork.sites(datasource = this.datasource);
 			application.cfc.userContent = new lib.cfc.TheLocalNetwork.userContent(datasource = this.datasource);
 		}
-		
-		
-		
+
+
+
 		private void function initCacheSettings(){
 			application.cache.time.persist = CreateTimeSpan(1,0,0,0);
 			application.cache.time.high = application.cache.time.national = CreateTimeSpan(0,1,0,0);
 			application.cache.time.med = application.cache.time.state = CreateTimeSpan(0,0,15,0);
 			application.cache.time.low = application.cache.time.local = CreateTimeSpan(0,0,5,0);
 			application.cache.time.min = CreateTimeSpan(0,0,0,15);
-			
+
 			application.cache.idle.persist = application.cache.time.high;
 			application.cache.idle.high = application.cache.idle.national = application.cache.time.med;
 			application.cache.idle.med = application.cache.idle.state = application.cache.time.low;
 			application.cache.idle.low = application.cache.idle.local = CreateTimeSpan(0,0,1,0);
 			application.cache.idle.min = CreateTimeSpan(0,0,0,3);
 		}
-		
-		
-		
-	
+
+
+
+
 		private void function resetHandler(){
 			if (url.reset EQ "app"){
 				resetApp();
@@ -210,25 +201,25 @@
 			else if (url.reset EQ "cache"){
 				resetCache();
 			}
-			
+
 			location(url="#application.paths.rel.root#/", addtoken="no");
 		}
-		
-		
+
+
 		private void function resetApp(){
 			resetCache();
 			applicationStop();
 		}
-		
-		
+
+
 		private void function resetClient(){
 			local.clientVars = structKeyArray(client);
 			for(local.ixCVar IN local.clientVars){
 				deleteClientVariable(local.ixCVar);
 			}
 		}
-		
-		
+
+
 		private void function resetCache(){
 			local.cacheIdArray = cacheGetAllIds();
 			for(local.ixCacheId IN local.cacheIdArray){
@@ -236,9 +227,9 @@
 			}
 		}
 	</cfscript>
-	 
-	 
-	 
+
+
+
 
 
 	<!--- Runs before request as well, after onRequestStart --->
@@ -291,9 +282,9 @@
 		<!--- Return out. --->
 		<cfreturn />
 	</cffunction>
-	
-	
-	
+
+
+
 
 	<!--- Fired when user requests a CFM that doesn't exist. --->
 	<!---<cffunction name="onMissingTemplate" returnType="boolean" output="false">
@@ -301,7 +292,7 @@
 		<cfinclude template="~404.cfm">
 		<cfreturn true>
 	</cffunction>--->
-	
+
 	<cffunction name="setCookie" access="private" returnType="void" output="false">
 		<cfargument name="name" type="string" required="true">
 		<cfargument name="value" type="string" required="false">
@@ -317,7 +308,7 @@
 		        <cfset args[arg] = arguments[arg]>
 		    </cfif>
 		</cfloop>
-		
+
 		<cfcookie attributecollection="#args#">
 	</cffunction>
 </cfcomponent>
