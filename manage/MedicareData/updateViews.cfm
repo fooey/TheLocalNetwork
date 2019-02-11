@@ -4,7 +4,8 @@
 		// ,"nursing home"
 		// ,"nursing home providers"
 		// ,"nursing home ownership and affiliation"
-		// ,"hhc"
+		,"hhc"
+		, "home health compare"
 		// ,"hospital compare"
 		// ,"supplier"
 		// ,"dialysis"
@@ -20,9 +21,15 @@
 	];
 	//local.specificViews = [];
 	local.views = [];
+	local.excludedViews = [
+		''
+		, '7rpc-etc2' //	Human Health Criteria Draft Rule Comments - WAC 173.201A'
+		, 'rtg4-imyd'
+	];
 
 
 	writeOutput("<h3>Getting views by tag</h3>");
+	writeDump(local.tags);
 	getPageContext().getOut().flush();
 
 	// for(local.tag in local.tags){
@@ -35,7 +42,17 @@
 	// 	writeOutput(" #arrayLen(local.views)# views <br>");
 	// 	getPageContext().getOut().flush();
 	// }
-    local.views = application.cfc.medicareApi.getViews(tags="nhc");
+    local.views = application.cfc.medicareApi.getViews(tags=local.tags);
+	// writeDump(local.views);
+
+	// writeDump(local.excludedViews);
+	ArrayEach(local.excludedViews, function(id) {
+		if (structKeyExists(local.views, id)) {
+			structDelete(local.views, id);
+		}
+	});
+	
+	// writeDump(local.views);
 
 
 	// writeOutput("<hr><h3>Getting views not available by tags</h3>");
